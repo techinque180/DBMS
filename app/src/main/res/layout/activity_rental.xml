@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="租借設施"
+        android:textSize="30dp">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="設施"
+            android:textSize="20dp"
+            >
+
+        </TextView>
+        <Spinner
+            android:id="@+id/spinner_type"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp">
+
+        </Spinner>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日期"
+            android:textSize="20dp">
+
+        </TextView>
+        <Button
+            android:layout_width="190dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:text="請選擇日期"
+            android:id="@+id/btn_date">
+
+        </Button>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="時間"
+            android:textSize="20dp">
+
+        </TextView>
+        <Button
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="請選擇時間"
+            android:id="@+id/btn_timeStart">
+
+        </Button>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="~">
+
+        </TextView>
+        <Button
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:text="請選擇時間"
+            android:id="@+id/btn_timeEnd">
+
+        </Button>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_nPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人數"
+            android:textSize="20dp">
+
+        </TextView>
+        <Spinner
+            android:layout_marginLeft="10dp"
+            android:id="@+id/spinner_nPeople"
+            android:layout_width="180dp"
+            android:layout_height="40dp">
+
+        </Spinner>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_rental_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="送出">
+
+    </Button>
+
+
+</LinearLayout>
