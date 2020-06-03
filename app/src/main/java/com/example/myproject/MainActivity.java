@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             try {
-                URL url = new URL("http://192.168.1.101/registerGetdata.php");
+                URL url = new URL("http://192.168.1.101/accountGetdata.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -137,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
                 // 讀取輸入串流並存到字串的部分
                 // 取得資料後想用不同的格式
                 // 例如 Json 等等，都是在這一段做處理
-                System.out.println(result);
                 JSONArray array = new JSONArray(result);
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject jsonObject = array.getJSONObject(i);
