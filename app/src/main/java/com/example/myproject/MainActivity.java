@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText et_passwd;
     private Button btn_login;
     private Button btn_reg;
-    String result;
-    private residentData[] residentDatas = new residentData[10];
+    private  String result;
+    private accountData[] accountDatas = new accountData[20];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +47,45 @@ public class MainActivity extends AppCompatActivity {
         btn_login = (Button)findViewById(R.id.btn_login);
         btn_reg = (Button)findViewById(R.id.btn_reg);
 
-
+        Thread thread = new Thread(mutiThread);
+        thread.start();
 
         btn_login.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 /////帳號密碼是否存在於資料庫
-                if(spinner_identity.getSelectedItem().toString().equals("住戶")){
-                    Thread thread = new Thread(mutiThread);
-                    thread.start();
-                    Intent intent = new Intent(MainActivity.this, resident.class);
-                    startActivity(intent);
-                }else if(spinner_identity.getSelectedItem().toString().equals("管理員")){
-                    Intent intent = new Intent(MainActivity.this, managerActivity.class);
-                    startActivity(intent);
+
+                int flag = 0;
+                System.out.println(et_account.getText());
+                for (int i = 0; i < accountDatas.length; i++) {
+                    if(accountDatas[i] == null) {
+                        break;
+                    }
+                    if(accountDatas[i].getAccount_id().equals(et_account.getText().toString())
+                            && accountDatas[i].getPassword().equals(et_passwd.getText().toString())) {
+                        //帳密存在資料庫
+                        System.out.println("login");
+                        /////登入成功跳到主畫面
+                        if(spinner_identity.getSelectedItem().toString().equals("住戶")){
+
+                            Intent intent = new Intent(MainActivity.this, resident.class);
+                            startActivity(intent);
+                        }else if(spinner_identity.getSelectedItem().toString().equals("管理員")){
+                            Intent intent = new Intent(MainActivity.this, managerActivity.class);
+                            startActivity(intent);
+                        }
+                        flag++;
+                        break;
+                    }
                 }
+                if(flag == 1) {
+                    flag--;
+                }else{
+                    //帳密不存在資料庫
+                    /////登入失敗停留在此畫面
+                }
+
                 /////登入成功跳到主畫面(顯示登入成功)
                 /////登入失敗停留在此畫面(顯示登入失敗)
             }
@@ -88,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             try {
-                URL url = new URL("http:/10.22.15.106/registerGetdata.php");
+                URL url = new URL("http://192.168.1.101/registerGetdata.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -117,12 +141,13 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray array = new JSONArray(result);
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject jsonObject = array.getJSONObject(i);
-                    residentDatas[i] = new residentData();
-                    String account_id = jsonObject.getString("account_id");
-                    residentDatas[i].setAccount_id(account_id);
-                    String room_no = jsonObject.getString("room_no");
-                    residentDatas[i].setRoom_no(room_no);
-                    System.out.println(residentDatas[i].getAccount_id() + residentDatas[i].getRoom_no());
+                    accountDatas[i] = new accountData();
+                    accountDatas[i].setAccount_id(jsonObject.getString("account_id"));
+                    accountDatas[i].setBalance_money(jsonObject.getString("balance_money"));
+                    accountDatas[i].setManager_id(jsonObject.getString("manager_id"));
+                    accountDatas[i].setPassword(jsonObject.getString("password"));
+                    System.out.println(accountDatas[i].getAccount_id() + " " + accountDatas[i].getPassword() + " "
+                            + accountDatas[i].getManager_id() + " " + accountDatas[i].getBalance_money());
                     //Log.d("TAG", "title:" + title + ", tag:" + tag + ", info:" + info);
                 }
 
