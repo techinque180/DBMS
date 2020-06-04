@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -81,9 +82,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(flag == 1) {
                     flag--;
+                    Toast.makeText(MainActivity.this, "登入成功", Toast.LENGTH_LONG).show();
                 }else{
                     //帳密不存在資料庫
                     /////登入失敗停留在此畫面
+                    Toast.makeText(MainActivity.this, "登入失敗", Toast.LENGTH_LONG).show();
                 }
 
                 /////登入成功跳到主畫面(顯示登入成功)
