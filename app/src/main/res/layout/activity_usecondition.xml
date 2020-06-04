@@ -34,6 +34,7 @@
             android:textSize="22dp"
             android:text="："/>
         <TextView
+            android:id="@+id/tv_ktv01renthour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
@@ -44,6 +45,7 @@
             android:textSize="22dp"
             android:text="："/>
         <TextView
+            android:id="@+id/tv_ktv01rentmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
@@ -54,6 +56,7 @@
             android:textSize="22dp"
             android:text="～"/>
         <TextView
+            android:id="@+id/tv_ktv01returnhour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
@@ -64,6 +67,7 @@
             android:textSize="22dp"
             android:text="："/>
         <TextView
+            android:id="@+id/tv_ktv01returnmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
@@ -86,6 +90,7 @@
             android:textSize="22dp"
             android:text="："/>
         <TextView
+            android:id="@+id/tv_ktv02renthour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
@@ -96,6 +101,7 @@
             android:textSize="22dp"
             android:text="："/>
         <TextView
+            android:id="@+id/tv_ktv02rentmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
@@ -106,6 +112,7 @@
             android:textSize="22dp"
             android:text="～"/>
         <TextView
+            android:id="@+id/tv_ktv02returnhour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
@@ -116,6 +123,7 @@
             android:textSize="22dp"
             android:text="："/>
         <TextView
+            android:id="@+id/tv_ktv02returnmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
@@ -138,6 +146,7 @@
             android:textSize="22dp"
             android:text="："/>
         <TextView
+            android:id="@+id/tv_ktv03renthour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
@@ -148,6 +157,7 @@
             android:textSize="22dp"
             android:text="："/>
         <TextView
+            android:id="@+id/tv_ktv03rentmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
@@ -158,6 +168,7 @@
             android:textSize="22dp"
             android:text="～"/>
         <TextView
+            android:id="@+id/tv_ktv03returnhour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
