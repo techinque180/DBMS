@@ -80,7 +80,6 @@ public class Register extends AppCompatActivity {
         phoneNum = et_phoneNum.getText().toString();
         reg_passwd = et_reg_passwd.getText().toString();
         reg_passwd_check = et_reg_passwd_check.getText().toString();
-        passwd_flag = 1;
 
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,19 +88,15 @@ public class Register extends AppCompatActivity {
 //                thread.start();
                 showDialog();
                 if(reg_passwd.equals(reg_passwd_check)){
-                    passwd_flag = 0;
-                } ////////else if(如果房號不存在於資料庫)
-                else {
-                    //////將所有資料存到資料庫裡////////
+                    Toast.makeText(Register.this, "註冊成功", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Register.this, MainActivity.class);
                     startActivity(intent);
+                } ////////else if(如果房號不存在於資料庫)
+                else {
+                    Toast.makeText(Register.this, "重複輸入密碼錯誤", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-        if(passwd_flag == 0){
-            Toast.makeText(this, "重複輸入密碼錯誤", Toast.LENGTH_LONG).show();
-        }
 
 
 
