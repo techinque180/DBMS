@@ -50,12 +50,12 @@ public class Register extends AppCompatActivity {
     private  EditText et_reg_passwd_check;
     private Button btn_go;
 
+
     private String name ;
     private String floor;
     private String roomNum ;
     private String phoneNum ;
-    private String reg_passwd;
-    private String reg_passwd_check;
+
     private int passwd_flag;
 
     private  int count = 0; //帳號id
@@ -78,8 +78,7 @@ public class Register extends AppCompatActivity {
         floor = et_floor.getText().toString();
         roomNum = et_roomNum.getText().toString();
         phoneNum = et_phoneNum.getText().toString();
-        reg_passwd = et_reg_passwd.getText().toString();
-        reg_passwd_check = et_reg_passwd_check.getText().toString();
+
 
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +86,7 @@ public class Register extends AppCompatActivity {
 //                Thread thread = new Thread(mutiThread);
 //                thread.start();
                 showDialog();
-                if(reg_passwd.equals(reg_passwd_check)){
+                if((et_reg_passwd.getText().toString()).equals(et_reg_passwd_check.getText().toString())){
                     Toast.makeText(Register.this, "註冊成功", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Register.this, MainActivity.class);
                     startActivity(intent);
