@@ -62,7 +62,8 @@ public class resident extends AppCompatActivity {
         bnt_resusecondition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //跳到使用狀況畫面
+                Intent intent = new Intent(resident.this, Usecondition.class);
+                startActivity(intent);//跳到使用狀況畫面
             }
         });
 

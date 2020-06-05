@@ -69,6 +69,8 @@ public class Rental extends AppCompatActivity {
     private Button btn_timeStart;
     private Button btn_timeEnd;
     private Button btn_rental_go;
+    private String nPeople;
+    private String type;
 
     private String response;
 
@@ -87,6 +89,7 @@ public class Rental extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item,
                 lunch);
         spinner_type.setAdapter(lunchList);
+        type = spinner_type.getSelectedItem().toString();
         ///////輸入種類到資料庫////////
 
 
@@ -97,6 +100,7 @@ public class Rental extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item,
                 lunch1);
         spinner_nPeople.setAdapter(lunch1List);
+        nPeople = spinner_nPeople.getSelectedItem().toString();
         ///////輸入人數到資料庫////////
 
 

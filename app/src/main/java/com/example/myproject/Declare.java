@@ -35,6 +35,8 @@ public class Declare extends AppCompatActivity {
 
     private Button btn_declare_go;
     private EditText et_reason;
+    private String utility;
+    private String level;
 
     private String result;
 
@@ -55,6 +57,7 @@ public class Declare extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item,
                 lunch);
         spinner_uti.setAdapter(lunchList);
+        utility = spinner_uti.getSelectedItem().toString();
         ///////輸入種類到資料庫////////
 
 
@@ -66,6 +69,7 @@ public class Declare extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item,
                 lunch1);
         spinner_damageLevel.setAdapter(lunch1List);
+        level = spinner_damageLevel.getSelectedItem().toString();
         ///////輸入人數到資料庫////////
 
         btn_declare_go = (Button)findViewById(R.id.btn_declare_go);

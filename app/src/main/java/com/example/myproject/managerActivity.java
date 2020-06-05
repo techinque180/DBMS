@@ -32,7 +32,8 @@ public class managerActivity extends AppCompatActivity {
         bnt_manusecondition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //跳到使用狀況畫面
+                Intent intent = new Intent(managerActivity.this, Usecondition.class);
+                startActivity(intent);//跳到使用狀況畫面
             }
         });
 
