@@ -206,7 +206,7 @@ public class Rental extends AppCompatActivity {
 
         HttpURLConnection con=null;
         InputStream in=null;
-        String      path="http://192.168.1.101/android_connect/get_all_persons.php";
+        String      path="http://10.22.15.106/android_connect/get_all_persons.php";
         try {
             con= (HttpURLConnection) new URL(path).openConnection();
             con.setConnectTimeout(5000);
@@ -242,65 +242,20 @@ public class Rental extends AppCompatActivity {
     private void showDialog() {
         String nPeople=spinner_nPeople.getSelectedItem().toString();
         String kind=spinner_type.getSelectedItem().toString();
-//                String time=.getText().toString();
 
         try {
             jsonObject.put("damage_level", null);
             jsonObject.put("refund_status", null);
             jsonObject.put("use_status", null);
-            jsonObject.put("room_no", );
             jsonObject.put("nPeople",nPeople);
             jsonObject.put("kind",kind);
             jsonObject.put("uti_no", "01");
-            jsonObject.put()
-//                    jsonObject.put("City",City);
         } catch (JSONException e) {
             e.printStackTrace();
         };
         send();
 
     }
-//    private void showDialog(){ System.out.println("i am here");
-//        AlertDialog.Builder builder=new AlertDialog.Builder(Rental.this);
-//        builder.setTitle("添加個人資訊");
-//        View view= View.inflate(Rental.this,R.layout.activity_rental,null);
-//        builder.setView(view);
-//
-//
-//        builder.setPositiveButton("確定", new OnClickListener(){
-//
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                System.out.println("i am here");
-//                String nPeople=spinner_nPeople.getSelectedItem().toString();
-//                String kind=spinner_type.getSelectedItem().toString();
-////                String time=.getText().toString();
-//
-//                try {
-//                    jsonObject.put("nPeople",nPeople);
-//                    jsonObject.put("kind",kind);
-////                    jsonObject.put("City",City);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                };
-//                send();
-//            }
-//        });
-//        builder.setNegativeButton("取消",new OnClickListener(){
-//
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//
-//            }
-//        });
-
-//        AlertDialog ad=builder.create();
-//        ad.show();
-
-
-//        inputCity= (EditText)ad.findViewById(R.id.et_City);
-
-//    }
 
     private void send() {
         new Thread(new Runnable() {
@@ -315,7 +270,7 @@ public class Rental extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 
-        String path="http://192.168.1.101/android_connect/create_utilities.php";
+        String path="http://10.22.15.106/android_connect/create_utilities.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
