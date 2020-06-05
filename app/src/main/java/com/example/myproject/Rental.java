@@ -2,10 +2,14 @@ package com.example.myproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,10 +18,43 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Calendar;
+
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.os.Bundle;
+//import android.support.v7.app.AlertDialog;
+//import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Rental extends AppCompatActivity {
 
+    public static final String TAG="Rental";
     private String setDateFormat(int year,int monthOfYear,int dayOfMonth){
         return String.valueOf(year) + "-"
                 + String.valueOf(monthOfYear + 1) + "-"
@@ -32,6 +69,8 @@ public class Rental extends AppCompatActivity {
     private Button btn_timeStart;
     private Button btn_timeEnd;
     private Button btn_rental_go;
+
+    private String response;
 
 
     private int declare_flag = 1;
@@ -135,7 +174,8 @@ public class Rental extends AppCompatActivity {
             public void onClick(View v) {
                 ////////判斷租借時間是否已經存在於資料庫///////if(不存在){}
                 //////將Login畫面改成登入後的畫面//////
-
+                showDialog();
+                    System.out.println("rental_go");
                 Intent intent = new Intent(Rental.this, resident.class);
                 startActivity(intent);
             }
@@ -148,5 +188,170 @@ public class Rental extends AppCompatActivity {
             Toast.makeText(this, "租借成功", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private void receive() {
+        new Thread(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        response=executeHttpGet();
+                    }
+                }
+
+        ).start();
+    }
+
+    private String executeHttpGet() {
+
+        HttpURLConnection con=null;
+        InputStream in=null;
+        String      path="http://192.168.1.101/android_connect/get_all_persons.php";
+        try {
+            con= (HttpURLConnection) new URL(path).openConnection();
+            con.setConnectTimeout(5000);
+            con.setReadTimeout(5000);
+            con.setDoInput(true);
+            con.setRequestMethod("GET");
+            if(con.getResponseCode()==200){
+
+                in=con.getInputStream();
+                return parseInfo(in);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private String parseInfo(InputStream in) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(in));
+        StringBuilder sb=new StringBuilder();
+        String line=null;
+        while ((line=br.readLine())!=null){
+            sb.append(line+"\n");
+        }
+        Log.i(TAG, "parseInfo: sb:"+sb.toString());
+        return sb.toString();
+    }
+
+    /*傳送資料給MySQL資料庫*/
+
+    private void showDialog() {
+        String nPeople=spinner_nPeople.getSelectedItem().toString();
+        String kind=spinner_type.getSelectedItem().toString();
+//                String time=.getText().toString();
+
+        try {
+            jsonObject.put("damage_level", null);
+            jsonObject.put("refund_status", null);
+            jsonObject.put("use_status", null);
+            jsonObject.put("room_no", );
+            jsonObject.put("nPeople",nPeople);
+            jsonObject.put("kind",kind);
+            jsonObject.put("uti_no", "01");
+            jsonObject.put()
+//                    jsonObject.put("City",City);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        };
+        send();
+
+    }
+//    private void showDialog(){ System.out.println("i am here");
+//        AlertDialog.Builder builder=new AlertDialog.Builder(Rental.this);
+//        builder.setTitle("添加個人資訊");
+//        View view= View.inflate(Rental.this,R.layout.activity_rental,null);
+//        builder.setView(view);
+//
+//
+//        builder.setPositiveButton("確定", new OnClickListener(){
+//
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                System.out.println("i am here");
+//                String nPeople=spinner_nPeople.getSelectedItem().toString();
+//                String kind=spinner_type.getSelectedItem().toString();
+////                String time=.getText().toString();
+//
+//                try {
+//                    jsonObject.put("nPeople",nPeople);
+//                    jsonObject.put("kind",kind);
+////                    jsonObject.put("City",City);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                };
+//                send();
+//            }
+//        });
+//        builder.setNegativeButton("取消",new OnClickListener(){
+//
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//            }
+//        });
+
+//        AlertDialog ad=builder.create();
+//        ad.show();
+
+
+//        inputCity= (EditText)ad.findViewById(R.id.et_City);
+
+//    }
+
+    private void send() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                executeHttpPost();
+            }
+        }).start();
+
+    }
+
+    JSONObject jsonObject=new JSONObject();
+    private void executeHttpPost() {
+
+        String path="http://192.168.1.101/android_connect/create_utilities.php";
+        try {
+            URL url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            //conn.setConnectTimeout(3000);     //設定連線超時時間
+            conn.setDoOutput(true);  //開啟輸出流，以便向伺服器提交資料
+            conn.setDoInput(true);  //開啟輸入流，以便從伺服器獲取資料
+            conn.setUseCaches(false);//使用Post方式不能使用快取
+            conn.setRequestMethod("POST");  //設定以Post方式提交資料
+            //conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Charset", "UTF-8");
+            // 設定檔案型別:
+            //conn.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+            // 設定接收型別否則返回415錯誤
+            //conn.setRequestProperty("accept","*/*")此處為暴力方法設定接受所有型別，以此來防範返回415;
+            conn.setRequestProperty("accept","application/json");
+
+            // 往伺服器裡面傳送資料
+            String Json=jsonObject.toString();
+
+            System.out.println("-----------    "+Json);
+
+            if (Json != null && !TextUtils.isEmpty(Json)) {
+                byte[] writebytes = Json.getBytes();
+                // 設定檔案長度
+                conn.setRequestProperty("Content-Length", String.valueOf(writebytes.length));
+                OutputStream outwritestream = conn.getOutputStream();
+                outwritestream.write(Json.getBytes());
+                outwritestream.flush();
+                outwritestream.close();
+                Log.d("upload: ", "doJsonPost: "+conn.getResponseCode());//如輸出200，則對了
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
