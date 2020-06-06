@@ -14,11 +14,14 @@ public class Store extends AppCompatActivity {
     private EditText et_storeroom;
     private EditText et_storemoney;
     private Button bnt_storesend;
-
+    private String account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
+
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
 
         et_storeroom = (EditText) findViewById(R.id.et_storeroom);
         et_storemoney = (EditText) findViewById(R.id.et_storemoney);

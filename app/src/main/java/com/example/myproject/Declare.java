@@ -43,10 +43,9 @@ public class Declare extends AppCompatActivity {
     private String utility;
     private String level;
 
-    private String result;
-
     private String why;
 
+    private  String account;
 
 
     public static final String TAG="Declare";
@@ -55,7 +54,8 @@ public class Declare extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_declare);
-
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
         et_reason = (EditText)findViewById(R.id.et_reason) ;
 
 
@@ -87,11 +87,10 @@ public class Declare extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDialog();
-                ///////傳原因到設施使用狀況畫面/////////
+                ///////儲存原因(why)到資料庫/////////
                 why = et_reason.getText().toString();
                 ///////Login要改成登入後畫面///////
                 Intent intent = new Intent(Declare.this, resident.class);
-                //intent.putExtra("why", why);
                 startActivity(intent);
             }
         });
@@ -122,7 +121,7 @@ public class Declare extends AppCompatActivity {
 
         HttpURLConnection con=null;
         InputStream in=null;
-        String      path="http://10.22.16.43/declared_connect/get_all_declared.php";
+        String      path="http://localhost/declared_connect/get_all_declared.php";
         try {
             con= (HttpURLConnection) new URL(path).openConnection();
             con.setConnectTimeout(5000);

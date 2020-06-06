@@ -12,11 +12,14 @@ public class managerActivity extends AppCompatActivity {
     private Button bnt_mansearchdamage;
     private Button bnt_manusecondition;
     private Button bnt_manstore;
-
+    private String account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
+
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
 
         bnt_mansearchdamage = (Button) findViewById(R.id.bnt_mansearchdamage);
         bnt_manusecondition = (Button) findViewById(R.id.bnt_manusecondition);

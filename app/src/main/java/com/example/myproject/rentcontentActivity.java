@@ -2,6 +2,7 @@ package com.example.myproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -16,11 +17,14 @@ public class rentcontentActivity extends AppCompatActivity {
     private TextView tv_rentmin;
     private TextView returnhr;
     private TextView returnmin;
-
+    private String account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rentcontent);
+
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
 
         tv_rentpeople = (TextView) findViewById(R.id.tv_rentpeople);
         tv_rentuti = (TextView) findViewById(R.id.tv_rentuti);

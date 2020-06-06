@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -16,12 +17,14 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 public class DeclareList extends AppCompatActivity {
-
+    private  String account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_declare_list);
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
 
 //        //StrictMode.ThreadPolicy oldThreadPolicy = StrictMode.getThreadPolicy();
 //        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()

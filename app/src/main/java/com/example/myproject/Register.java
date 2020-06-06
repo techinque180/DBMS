@@ -49,7 +49,7 @@ public class Register extends AppCompatActivity {
     private  EditText et_reg_passwd;
     private  EditText et_reg_passwd_check;
     private Button btn_go;
-
+    private String account;
 
     private String name ;
     private String floor;
@@ -64,6 +64,9 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
 
         et_name = (EditText)findViewById(R.id.et_name);
         et_floor = (EditText)findViewById(R.id.et_floor);
