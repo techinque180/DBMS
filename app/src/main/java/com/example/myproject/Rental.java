@@ -53,7 +53,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Rental extends AppCompatActivity {
-    private String account;
     public static final String TAG="Rental";
     private String setDateFormat(int year,int monthOfYear,int dayOfMonth){
         return String.valueOf(year) + "-"
@@ -71,8 +70,6 @@ public class Rental extends AppCompatActivity {
     private Button btn_rental_go;
     private String nPeople;
     private String type;
-    final Calendar e = Calendar.getInstance();
-    final Calendar c = Calendar.getInstance();
     private String response;
     private int hour_start;
     private int minute_start;
@@ -86,8 +83,7 @@ public class Rental extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rental);
 
-        Intent intent = getIntent();
-        account = intent.getStringExtra("account");
+
 
         spinner_type = (Spinner)findViewById(R.id.spinner_type);
 
@@ -253,23 +249,33 @@ public class Rental extends AppCompatActivity {
     /*傳送資料給MySQL資料庫*/
 
     private void showDialog() {
-        String nPeople=spinner_nPeople.getSelectedItem().toString();
-        String kind=spinner_type.getSelectedItem().toString();
+        String account;
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
+        String nPeople = spinner_nPeople.getSelectedItem().toString();
+        String kind = spinner_type.getSelectedItem().toString();
+        String year = String.valueOf(mYear);
+        String month = String.valueOf(mMonth);
+        String day = String.valueOf(mDay);
+        String hour_s = String.valueOf(hour_start);
+        String minute_s = String.valueOf(minute_start);
+        String hour_e = String.valueOf(hour_end);
+        String minute_e = String.valueOf(minute_end);
 
         try {
             jsonObject.put("damage_level", null);
             jsonObject.put("refund_status", null);
             jsonObject.put("use_status", null);
-            jsonObject.put("room_no",account);
+            jsonObject.put("room_no",account;
             jsonObject.put("nPeople",nPeople);
             jsonObject.put("kind",kind);
-            jsonObject.put("year",mYear);
-            jsonObject.put("month",mMonth);
-            jsonObject.put("day",mDay);
-            jsonObject.put("hour_start",hour_start);
-            jsonObject.put("minute_start",minute_start);
-            jsonObject.put("hour_end",hour_end);
-            jsonObject.put("minute_end",minute_end);
+            jsonObject.put("year",year);
+            jsonObject.put("month",month);
+            jsonObject.put("day",day);
+            jsonObject.put("hour_start",hour_s);
+            jsonObject.put("minute_start",minute_s);
+            jsonObject.put("hour_end",hour_e);
+            jsonObject.put("minute_end",minute_e);
 
         } catch (JSONException e) {
             e.printStackTrace();
