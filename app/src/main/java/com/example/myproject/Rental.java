@@ -76,6 +76,8 @@ public class Rental extends AppCompatActivity {
     private int hour_end;
     private int minute_end;
 
+    String account;
+
 
     private int declare_flag = 1;
     @Override
@@ -83,7 +85,9 @@ public class Rental extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rental);
 
-
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
+        System.out.println(account);
 
         spinner_type = (Spinner)findViewById(R.id.spinner_type);
 
@@ -144,7 +148,7 @@ public class Rental extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         btn_timeStart.setText(hourOfDay + ":" + minute);
-
+                        System.out.println("start" + hour_start + " " + minute_start);
 
                         ///////輸入時間資訊到資料庫//////
                     }
@@ -166,7 +170,7 @@ public class Rental extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         btn_timeEnd.setText(hourOfDay + ":" + minute);
-
+                        System.out.println("end:" + hour_end + " " + minute_end);
 
                         ///////輸入時間資訊到資料庫//////
                     }
@@ -250,10 +254,6 @@ public class Rental extends AppCompatActivity {
     /*傳送資料給MySQL資料庫*/
 
     private void showDialog() {
-        String account;
-        Intent intent = getIntent();
-        account = intent.getStringExtra("account");
-        System.out.println(account);
         String nPeople = spinner_nPeople.getSelectedItem().toString();
         String kind = spinner_type.getSelectedItem().toString();
         String year = String.valueOf(mYear);
@@ -265,19 +265,19 @@ public class Rental extends AppCompatActivity {
         String minute_e = String.valueOf(minute_end);
 
         try {
-//            jsonObject.put("damage_level", String.valueOf('5'));
-//            jsonObject.put("refund_status", String.valueOf('N'));
-//            jsonObject.put("use_status", String.valueOf('Y'));
+            jsonObject.put("damage_level", null);
+            jsonObject.put("refund_status", "N");
+            jsonObject.put("use_status", "Y");
             jsonObject.put("room_no",account);
             jsonObject.put("npeople",nPeople);
             jsonObject.put("kind",kind);
-//            jsonObject.put("year",year);
-//            jsonObject.put("month",month);
-//            jsonObject.put("day",day);
-//            jsonObject.put("hour_start",hour_s);
-//            jsonObject.put("minute_start",minute_s);
-//            jsonObject.put("hour_end",hour_e);
-//            jsonObject.put("minute_end",minute_e);
+            jsonObject.put("year",year);
+            jsonObject.put("month",month);
+            jsonObject.put("day",day);
+            jsonObject.put("hour_start",hour_s);
+            jsonObject.put("minute_start",minute_s);
+            jsonObject.put("hour_end",hour_e);
+            jsonObject.put("minute_end",minute_e);
 
         } catch (JSONException e) {
             e.printStackTrace();
