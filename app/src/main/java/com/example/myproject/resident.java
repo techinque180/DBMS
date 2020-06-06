@@ -22,7 +22,6 @@ public class resident extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resident);
 
-
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
 
@@ -36,7 +35,9 @@ public class resident extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(resident.this, rentcontentActivity.class);
+                intent.putExtra("account", account);
                 startActivity(intent);//跳到租借紀錄畫面
+
             }
         });
 
@@ -44,6 +45,7 @@ public class resident extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(resident.this, Rental.class);
+                intent.putExtra("account", account);
                 startActivity(intent);//跳到租借畫面
             }
         });
@@ -67,6 +69,7 @@ public class resident extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(resident.this, Usecondition.class);
+                intent.putExtra("account", account);
                 startActivity(intent);//跳到使用狀況畫面
             }
         });
@@ -75,6 +78,7 @@ public class resident extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(resident.this, Declare.class);
+                intent.putExtra("account", account );
                 startActivity(intent);//跳到申報畫面
             }
         });

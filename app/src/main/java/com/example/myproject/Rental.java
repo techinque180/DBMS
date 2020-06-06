@@ -252,6 +252,7 @@ public class Rental extends AppCompatActivity {
         String account;
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
+        System.out.println(account);
         String nPeople = spinner_nPeople.getSelectedItem().toString();
         String kind = spinner_type.getSelectedItem().toString();
         String year = String.valueOf(mYear);

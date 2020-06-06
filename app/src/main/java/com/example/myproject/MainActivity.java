@@ -72,24 +72,6 @@ public class MainActivity extends AppCompatActivity {
                             Intent resident_intent = new Intent(MainActivity.this, resident.class);
                             resident_intent.putExtra("account", et_account.getText().toString());
                             startActivity(resident_intent);
-                            Intent declare_intent = new Intent();
-                            declare_intent.setClass(MainActivity.this, Declare.class);
-                            declare_intent.putExtra("account", et_account.getText().toString());
-                            startActivity(declare_intent);
-                            Intent declare_list_intent = new Intent(MainActivity.this, DeclareList.class);
-                            declare_list_intent.putExtra("account", et_account.getText().toString());
-                            Intent manager_intent = new Intent(MainActivity.this, managerActivity.class);
-                            manager_intent.putExtra("account", et_account.getText().toString());
-                            Intent register_intent = new Intent(MainActivity.this, Register.class);
-                            register_intent.putExtra("account", et_account.getText().toString());
-                            Intent rental_intent = new Intent(MainActivity.this, Rental.class);
-                            rental_intent.putExtra("account", et_account.getText().toString());
-                            Intent rentContext_intent = new Intent(MainActivity.this, rentcontentActivity.class);
-                            rentContext_intent.putExtra("account", et_account.getText().toString());
-                            Intent store_intent = new Intent(MainActivity.this, Store.class);
-                            store_intent.putExtra("account", et_account.getText().toString());
-                            Intent useCondition_intent = new Intent(MainActivity.this, Usecondition.class);
-                            useCondition_intent.putExtra("account", et_account.getText().toString());
 
                         }else if(spinner_identity.getSelectedItem().toString().equals("管理員")){
                             Intent intent = new Intent(MainActivity.this, managerActivity.class);
