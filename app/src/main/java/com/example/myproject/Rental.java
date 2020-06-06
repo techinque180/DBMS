@@ -74,6 +74,10 @@ public class Rental extends AppCompatActivity {
     final Calendar e = Calendar.getInstance();
     final Calendar c = Calendar.getInstance();
     private String response;
+    private int hour_start;
+    private int minute_start;
+    private int hour_end;
+    private int minute_end;
 
 
     private int declare_flag = 1;
@@ -138,8 +142,8 @@ public class Rental extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
-                int hour = c.get(Calendar.HOUR_OF_DAY);
-                int minute = c.get(Calendar.MINUTE);
+                hour_start = c.get(Calendar.HOUR_OF_DAY);
+                minute_start = c.get(Calendar.MINUTE);
                 new TimePickerDialog(Rental.this, new TimePickerDialog.OnTimeSetListener(){
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -148,7 +152,7 @@ public class Rental extends AppCompatActivity {
 
                         ///////輸入時間資訊到資料庫//////
                     }
-                }, hour, minute, true).show();
+                }, hour_start, minute_start, true).show();
             }
 
         });
@@ -160,8 +164,8 @@ public class Rental extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
-                int hour = c.get(Calendar.HOUR_OF_DAY);
-                int minute = c.get(Calendar.MINUTE);
+                hour_end = c.get(Calendar.HOUR_OF_DAY);
+                minute_end = c.get(Calendar.MINUTE);
                 new TimePickerDialog(Rental.this, new TimePickerDialog.OnTimeSetListener(){
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -170,7 +174,7 @@ public class Rental extends AppCompatActivity {
 
                         ///////輸入時間資訊到資料庫//////
                     }
-                }, hour, minute, true).show();
+                }, hour_end, minute_end, true).show();
             }
 
         });
@@ -262,10 +266,10 @@ public class Rental extends AppCompatActivity {
             jsonObject.put("year",mYear);
             jsonObject.put("month",mMonth);
             jsonObject.put("day",mDay);
-            jsonObject.put("hour_start",c.get(Calendar.HOUR_OF_DAY));
-            jsonObject.put("minute_start",c.get(Calendar.MINUTE));
-            jsonObject.put("hour_end",e.get(Calendar.HOUR_OF_DAY));
-            jsonObject.put("minute_end",e.get(Calendar.MINUTE));
+            jsonObject.put("hour_start",hour_start);
+            jsonObject.put("minute_start",minute_start);
+            jsonObject.put("hour_end",hour_end);
+            jsonObject.put("minute_end",minute_end);
 
         } catch (JSONException e) {
             e.printStackTrace();
