@@ -49,7 +49,7 @@ public class Register extends AppCompatActivity {
     private  EditText et_reg_passwd;
     private  EditText et_reg_passwd_check;
     private Button btn_go;
-
+    private String account;
 
     private String name ;
     private String floor;
@@ -58,13 +58,15 @@ public class Register extends AppCompatActivity {
 
     private int passwd_flag;
 
-    private  int count = 0; //帳號id
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
 
         et_name = (EditText)findViewById(R.id.et_name);
         et_floor = (EditText)findViewById(R.id.et_floor);
@@ -138,18 +140,17 @@ public class Register extends AppCompatActivity {
 
     //傳送
     private void showDialog() {
-        count++;
         String room_no=et_roomNum.getText().toString();
         String floor=et_floor.getText().toString();
         String phone=et_phoneNum.getText().toString();
-        String account_id = String.valueOf(count);
         String name = et_name.getText().toString();
+        String password = et_reg_passwd.getText().toString();
         try {
-            jsonObject.put("room_no", room_no);
-            jsonObject.put("floor",floor);
-            jsonObject.put("phone",phone);
-            jsonObject.put("account_id",account_id);
-            jsonObject.put("name",name);
+            jsonObject.putOpt("room_no", room_no);
+            jsonObject.putOpt("floor",floor);
+            jsonObject.putOpt("phone",phone);
+            jsonObject.putOpt("name",name);
+            jsonObject.putOpt("password", password);
         } catch (JSONException e) {
             e.printStackTrace();
         };

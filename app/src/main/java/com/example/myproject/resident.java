@@ -16,11 +16,15 @@ public class resident extends AppCompatActivity {
     private Button bnt_ressearchbalance;
     private Button bnt_resusecondition;
     private Button bnt_resdamagelevel;
-
+    private String account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resident);
+
+
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
 
         bnt_record = (Button) findViewById(R.id.bnt_record);
         bnt_rent = (Button) findViewById(R.id.bnt_rent);

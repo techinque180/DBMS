@@ -53,7 +53,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Rental extends AppCompatActivity {
-
+    private String account;
     public static final String TAG="Rental";
     private String setDateFormat(int year,int monthOfYear,int dayOfMonth){
         return String.valueOf(year) + "-"
@@ -82,6 +82,8 @@ public class Rental extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rental);
 
+        Intent intent = getIntent();
+        account = intent.getStringExtra("account");
 
         spinner_type = (Spinner)findViewById(R.id.spinner_type);
 

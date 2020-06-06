@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -70,8 +69,28 @@ public class MainActivity extends AppCompatActivity {
                         /////登入成功跳到主畫面
                         if(spinner_identity.getSelectedItem().toString().equals("住戶")){
 
-                            Intent intent = new Intent(MainActivity.this, resident.class);
-                            startActivity(intent);
+                            Intent resident_intent = new Intent(MainActivity.this, resident.class);
+                            resident_intent.putExtra("account", et_account.getText().toString());
+                            startActivity(resident_intent);
+                            Intent declare_intent = new Intent(MainActivity.this, Declare.class);
+                            declare_intent.putExtra("account", et_account.getText().toString());
+                            Intent declare_list_intent = new Intent(MainActivity.this, DeclareList.class);
+                            declare_list_intent.putExtra("account", et_account.getText().toString());
+                            Intent manager_intent = new Intent(MainActivity.this, managerActivity.class);
+                            manager_intent.putExtra("account", et_account.getText().toString());
+                            Intent register_intent = new Intent(MainActivity.this, Register.class);
+                            register_intent.putExtra("account", et_account.getText().toString());
+                            Intent rental_intent = new Intent(MainActivity.this, Rental.class);
+                            rental_intent.putExtra("account", et_account.getText().toString());
+                            Intent rentContext_intent = new Intent(MainActivity.this, rentcontentActivity.class);
+                            rentContext_intent.putExtra("account", et_account.getText().toString());
+                            Intent residentData_intent = new Intent(MainActivity.this, residentData.class);
+                            residentData_intent.putExtra("account", et_account.getText().toString());
+                            Intent store_intent = new Intent(MainActivity.this, Store.class);
+                            store_intent.putExtra("account", et_account.getText().toString());
+                            Intent useCondition_intent = new Intent(MainActivity.this, Usecondition.class);
+                            useCondition_intent.putExtra("account", et_account.getText().toString());
+
                         }else if(spinner_identity.getSelectedItem().toString().equals("管理員")){
                             Intent intent = new Intent(MainActivity.this, managerActivity.class);
                             startActivity(intent);
@@ -82,11 +101,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(flag == 1) {
                     flag--;
-                    Toast.makeText(MainActivity.this, "登入成功", Toast.LENGTH_LONG).show();
                 }else{
                     //帳密不存在資料庫
                     /////登入失敗停留在此畫面
-                    Toast.makeText(MainActivity.this, "登入失敗", Toast.LENGTH_LONG).show();
                 }
 
                 /////登入成功跳到主畫面(顯示登入成功)
@@ -114,8 +131,7 @@ public class MainActivity extends AppCompatActivity {
     private Runnable mutiThread = new Runnable() {
         @Override
         public void run() {
-            try {   //192.168.1.101
-                    //10.22.15.106
+            try {
                 URL url = new URL("http://10.22.15.106/accountGetdata.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
