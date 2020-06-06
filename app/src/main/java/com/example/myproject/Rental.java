@@ -76,7 +76,7 @@ public class Rental extends AppCompatActivity {
     private int hour_end;
     private int minute_end;
 
-    String account;
+    private String account;
 
 
     private int declare_flag = 1;
@@ -220,7 +220,7 @@ public class Rental extends AppCompatActivity {
         HttpURLConnection con=null;
         InputStream in=null;
 //        10.22.15.106
-        String      path="http://192.168.1.101/utities_connect/get_all_utilities.php";
+        String      path="http://10.22.15.106/utities_connect/get_all_utilities.php";
         try {
             con= (HttpURLConnection) new URL(path).openConnection();
             con.setConnectTimeout(5000);
@@ -300,7 +300,7 @@ public class Rental extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 //        10.22.15.106
-        String path="http://192.168.1.101/utities_connect/create_utilities.php";
+        String path="http://10.22.15.106/utities_connect/create_utilities.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

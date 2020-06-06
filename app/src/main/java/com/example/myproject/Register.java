@@ -108,7 +108,7 @@ public class Register extends AppCompatActivity {
         HttpURLConnection con=null;
         InputStream in=null;
 //        10.22.15.106
-        String      path="http://192.168.1.101/resident_connect/get_all_resident.php";
+        String      path="http://10.22.15.106/resident_connect/get_all_resident.php";
         try {
             con= (HttpURLConnection) new URL(path).openConnection();
             con.setConnectTimeout(5000);
@@ -170,7 +170,7 @@ public class Register extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 //        10.22.15.106
-        String path="http://192.168.1.101/resident_connect/create_resident.php";
+        String path="http://10.22.15.106/resident_connect/create_resident.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
