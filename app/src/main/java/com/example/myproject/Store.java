@@ -24,6 +24,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Store extends AppCompatActivity {
+    public static final String TAG="Store";
 
     private EditText et_storeroom;
     private EditText et_storemoney;
@@ -84,7 +85,7 @@ public class Store extends AppCompatActivity {
         while ((line=br.readLine())!=null){
             sb.append(line+"\n");
         }
-        //Log.i(TAG, "parseInfo: sb:"+sb.toString());
+        Log.i(TAG, "parseInfo: sb:"+sb.toString());
         return sb.toString();
     }
 
