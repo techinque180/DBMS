@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity {
                             rental_intent.putExtra("account", et_account.getText().toString());
                             Intent rentContext_intent = new Intent(MainActivity.this, rentcontentActivity.class);
                             rentContext_intent.putExtra("account", et_account.getText().toString());
-                            Intent residentData_intent = new Intent(MainActivity.this, residentData.class);
-                            residentData_intent.putExtra("account", et_account.getText().toString());
                             Intent store_intent = new Intent(MainActivity.this, Store.class);
                             store_intent.putExtra("account", et_account.getText().toString());
                             Intent useCondition_intent = new Intent(MainActivity.this, Usecondition.class);
