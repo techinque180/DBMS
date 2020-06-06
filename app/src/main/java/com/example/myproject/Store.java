@@ -46,6 +46,7 @@ public class Store extends AppCompatActivity {
         bnt_storesend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showDialog();
                 Intent intent = new Intent(Store.this, managerActivity.class);
                 startActivity(intent);
             }
