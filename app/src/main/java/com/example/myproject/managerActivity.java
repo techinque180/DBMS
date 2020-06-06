@@ -29,6 +29,8 @@ public class managerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //跳到申報紀錄畫面
+                Intent intent = new Intent(managerActivity.this, DeclareList.class);
+                startActivity(intent);//跳到使用狀況畫面
             }
         });
 

@@ -72,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
                             Intent resident_intent = new Intent(MainActivity.this, resident.class);
                             resident_intent.putExtra("account", et_account.getText().toString());
                             startActivity(resident_intent);
-                            Intent declare_intent = new Intent(MainActivity.this, Declare.class);
+                            Intent declare_intent = new Intent();
+                            declare_intent.setClass(MainActivity.this, Declare.class);
                             declare_intent.putExtra("account", et_account.getText().toString());
+                            startActivity(declare_intent);
                             Intent declare_list_intent = new Intent(MainActivity.this, DeclareList.class);
                             declare_list_intent.putExtra("account", et_account.getText().toString());
                             Intent manager_intent = new Intent(MainActivity.this, managerActivity.class);
