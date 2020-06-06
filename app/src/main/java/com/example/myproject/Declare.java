@@ -121,7 +121,7 @@ public class Declare extends AppCompatActivity {
 
         HttpURLConnection con=null;
         InputStream in=null;
-        String      path="http://localhost/declared_connect/get_all_declared.php";
+        String      path="http://10.22.15.106/declared_connect/get_all_declared.php";
         try {
             con= (HttpURLConnection) new URL(path).openConnection();
             con.setConnectTimeout(5000);
@@ -188,7 +188,7 @@ public class Declare extends AppCompatActivity {
 
     private void executeHttpPost() {
 
-        String path="http://10.22.16.43/declared_connect/create_declared.php";
+        String path="http://10.22.15.106/declared_connect/create_declared.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
