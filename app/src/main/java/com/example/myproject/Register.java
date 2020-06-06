@@ -58,7 +58,6 @@ public class Register extends AppCompatActivity {
 
     private int passwd_flag;
 
-    private  int count = 0; //帳號id
 
 
     @Override
@@ -105,7 +104,7 @@ public class Register extends AppCompatActivity {
 
         HttpURLConnection con=null;
         InputStream in=null;
-        String      path="http://192.168.1.101/resident_connect/get_all_resident.php";
+        String      path="http://10.22.15.106/resident_connect/get_all_resident.php";
         try {
             con= (HttpURLConnection) new URL(path).openConnection();
             con.setConnectTimeout(5000);
@@ -138,18 +137,17 @@ public class Register extends AppCompatActivity {
 
     //傳送
     private void showDialog() {
-        count++;
         String room_no=et_roomNum.getText().toString();
         String floor=et_floor.getText().toString();
         String phone=et_phoneNum.getText().toString();
-        String account_id = String.valueOf(count);
         String name = et_name.getText().toString();
+        String password = et_reg_passwd.getText().toString();
         try {
-            jsonObject.put("room_no", room_no);
-            jsonObject.put("floor",floor);
-            jsonObject.put("phone",phone);
-            jsonObject.put("account_id",account_id);
-            jsonObject.put("name",name);
+            jsonObject.putOpt("room_no", room_no);
+            jsonObject.putOpt("floor",floor);
+            jsonObject.putOpt("phone",phone);
+            jsonObject.putOpt("name",name);
+            jsonObject.putOpt("password", password);
         } catch (JSONException e) {
             e.printStackTrace();
         };
@@ -168,7 +166,7 @@ public class Register extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 
-        String path="http://192.168.1.101/resident_connect/create_resident.php";
+        String path="http://10.22.15.106/resident_connect/create_resident.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
