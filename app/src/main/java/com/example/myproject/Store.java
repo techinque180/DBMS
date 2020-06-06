@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,8 +26,8 @@ public class Store extends AppCompatActivity {
     public static final String TAG="Store";
 
     private EditText et_storeroom;
-    private EditText et_storemoney;
-    private EditText et_storemanager;
+    private EditText et_store_money;
+    private EditText et_store_manager;
     private Button bnt_storesend;
     private String account;
     @Override
@@ -40,9 +39,9 @@ public class Store extends AppCompatActivity {
         account = intent.getStringExtra("account");
 
         et_storeroom = (EditText) findViewById(R.id.et_storeroom);
-        et_storemoney = (EditText) findViewById(R.id.et_storemoney);
+        et_store_money = (EditText) findViewById(R.id.et_storemoney);
         bnt_storesend = (Button) findViewById(R.id.bnt_storesend);
-        et_storemanager = (EditText) findViewById(R.id.et_storemanager);
+        et_store_manager = (EditText) findViewById(R.id.et_storemanager);
 
         bnt_storesend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,8 +91,8 @@ public class Store extends AppCompatActivity {
     //傳送
     private void showDialog() {
         String room_no=et_storeroom.getText().toString();
-        String stored_money=et_storemoney.getText().toString();
-        String manager_id=et_storemanager.getText().toString();
+        String stored_money= et_store_money.getText().toString();
+        String manager_id= et_store_manager.getText().toString();
 
         try {
             jsonObject.putOpt("room_no", room_no);

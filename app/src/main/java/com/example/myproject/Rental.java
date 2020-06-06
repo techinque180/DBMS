@@ -214,7 +214,8 @@ public class Rental extends AppCompatActivity {
 
         HttpURLConnection con=null;
         InputStream in=null;
-        String      path="http://10.22.15.106/android_connect/get_all_rental.php";
+//        10.22.15.106
+        String      path="http://192.168.1.101/utities_connect/get_all_utilities.php";
         try {
             con= (HttpURLConnection) new URL(path).openConnection();
             con.setConnectTimeout(5000);
@@ -264,19 +265,19 @@ public class Rental extends AppCompatActivity {
         String minute_e = String.valueOf(minute_end);
 
         try {
-            jsonObject.put("damage_level", null);
-            jsonObject.put("refund_status", null);
-            jsonObject.put("use_status", null);
+//            jsonObject.put("damage_level", String.valueOf('5'));
+//            jsonObject.put("refund_status", String.valueOf('N'));
+//            jsonObject.put("use_status", String.valueOf('Y'));
             jsonObject.put("room_no",account);
-            jsonObject.put("nPeople",nPeople);
+            jsonObject.put("npeople",nPeople);
             jsonObject.put("kind",kind);
-            jsonObject.put("year",year);
-            jsonObject.put("month",month);
-            jsonObject.put("day",day);
-            jsonObject.put("hour_start",hour_s);
-            jsonObject.put("minute_start",minute_s);
-            jsonObject.put("hour_end",hour_e);
-            jsonObject.put("minute_end",minute_e);
+//            jsonObject.put("year",year);
+//            jsonObject.put("month",month);
+//            jsonObject.put("day",day);
+//            jsonObject.put("hour_start",hour_s);
+//            jsonObject.put("minute_start",minute_s);
+//            jsonObject.put("hour_end",hour_e);
+//            jsonObject.put("minute_end",minute_e);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -297,8 +298,8 @@ public class Rental extends AppCompatActivity {
 
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
-
-        String path="http://10.22.15.106/android_connect/create_utilities.php";
+//        10.22.15.106
+        String path="http://192.168.1.101/utities_connect/create_utilities.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
