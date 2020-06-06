@@ -188,6 +188,7 @@ public class Rental extends AppCompatActivity {
                 showDialog();
                     System.out.println("rental_go");
                 Intent intent = new Intent(Rental.this, resident.class);
+                intent.putExtra("account", account);
                 startActivity(intent);
             }
         });

@@ -59,7 +59,6 @@ public class Declare extends AppCompatActivity {
         et_reason = (EditText)findViewById(R.id.et_reason) ;
 
 
-
         spinner_uti = (Spinner)findViewById(R.id.spinner_uti);
 
         final String[] lunch = {"KTV01", "KTV02", "健身房01", "游泳池01", "討論室01", "討論室02", "討論室03", "討論室04"};
