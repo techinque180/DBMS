@@ -266,7 +266,7 @@ public class Rental extends AppCompatActivity {
             jsonObject.put("damage_level", null);
             jsonObject.put("refund_status", null);
             jsonObject.put("use_status", null);
-            jsonObject.put("room_no",account;
+            jsonObject.put("room_no",account);
             jsonObject.put("nPeople",nPeople);
             jsonObject.put("kind",kind);
             jsonObject.put("year",year);
