@@ -71,7 +71,8 @@ public class Rental extends AppCompatActivity {
     private Button btn_rental_go;
     private String nPeople;
     private String type;
-
+    final Calendar e = Calendar.getInstance();
+    final Calendar c = Calendar.getInstance();
     private String response;
 
 
@@ -194,6 +195,7 @@ public class Rental extends AppCompatActivity {
 
     }
 
+    /*從MySQL裡獲取資料*/
     private void receive() {
         new Thread(
                 new Runnable() {
@@ -210,7 +212,7 @@ public class Rental extends AppCompatActivity {
 
         HttpURLConnection con=null;
         InputStream in=null;
-        String      path="http://10.22.15.106/android_connect/get_all_persons.php";
+        String      path="http://10.22.15.106/android_connect/get_all_rental.php";
         try {
             con= (HttpURLConnection) new URL(path).openConnection();
             con.setConnectTimeout(5000);
@@ -231,7 +233,7 @@ public class Rental extends AppCompatActivity {
     }
 
     private String parseInfo(InputStream in) throws IOException {
-        BufferedReader br=new BufferedReader(new InputStreamReader(in));
+        BufferedReader  br=new BufferedReader(new InputStreamReader(in));
         StringBuilder sb=new StringBuilder();
         String line=null;
         while ((line=br.readLine())!=null){
@@ -240,6 +242,7 @@ public class Rental extends AppCompatActivity {
         Log.i(TAG, "parseInfo: sb:"+sb.toString());
         return sb.toString();
     }
+
 
     /*傳送資料給MySQL資料庫*/
 
@@ -251,9 +254,17 @@ public class Rental extends AppCompatActivity {
             jsonObject.put("damage_level", null);
             jsonObject.put("refund_status", null);
             jsonObject.put("use_status", null);
+            jsonObject.put("room_no",room_no);
             jsonObject.put("nPeople",nPeople);
             jsonObject.put("kind",kind);
-            jsonObject.put("uti_no", "01");
+            jsonObject.put("year",mYear);
+            jsonObject.put("month",mMonth);
+            jsonObject.put("day",mDay);
+            jsonObject.put("hour_start",c.get(Calendar.HOUR_OF_DAY));
+            jsonObject.put("minute_start",c.get(Calendar.MINUTE));
+            jsonObject.put("hour_end",e.get(Calendar.HOUR_OF_DAY));
+            jsonObject.put("minute_end",e.get(Calendar.MINUTE));
+
         } catch (JSONException e) {
             e.printStackTrace();
         };
