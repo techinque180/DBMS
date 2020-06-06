@@ -57,12 +57,11 @@ public class MainActivity extends AppCompatActivity {
                 /////帳號密碼是否存在於資料庫
 
                 int flag = 0;
-                System.out.println(et_account.getText());
                 for (int i = 0; i < accountDatas.length; i++) {
                     if(accountDatas[i] == null) {
                         break;
                     }
-                    if(accountDatas[i].getAccount_id().equals(et_account.getText().toString())
+                    if(accountDatas[i].getRoom_no().equals(et_account.getText().toString())
                             && accountDatas[i].getPassword().equals(et_passwd.getText().toString())) {
                         //帳密存在資料庫
                         System.out.println("login");
@@ -161,12 +160,13 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject jsonObject = array.getJSONObject(i);
                     accountDatas[i] = new accountData();
-                    accountDatas[i].setAccount_id(jsonObject.getString("account_id"));
-                    accountDatas[i].setBalance_money(jsonObject.getString("balance_money"));
-                    accountDatas[i].setManager_id(jsonObject.getString("manager_id"));
+                    accountDatas[i].setRoom_no(jsonObject.getString("room_no"));
+                    accountDatas[i].setFloor(jsonObject.getString("floor"));
+                    accountDatas[i].setPhone(jsonObject.getString("phone"));
+                    accountDatas[i].setName(jsonObject.getString("name"));
                     accountDatas[i].setPassword(jsonObject.getString("password"));
-                    System.out.println(accountDatas[i].getAccount_id() + " " + accountDatas[i].getPassword() + " "
-                            + accountDatas[i].getManager_id() + " " + accountDatas[i].getBalance_money());
+//                    System.out.println(accountDatas[i].getAccount_id() + " " + accountDatas[i].getPassword() + " "
+//                            + accountDatas[i].getManager_id() + " " + accountDatas[i].getBalance_money());
                     //Log.d("TAG", "title:" + title + ", tag:" + tag + ", info:" + info);
                 }
 

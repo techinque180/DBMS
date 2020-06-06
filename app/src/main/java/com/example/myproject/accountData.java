@@ -1,40 +1,49 @@
 package com.example.myproject;
 
 public class accountData {
-    private String account_id;
+    private String room_no;
+    private String floor;
+    private String phone;
+    private String name;
     private String password;
-    private String manager_id;
-    private String balance_money;
 
-    public String getAccount_id() {
-        return account_id;
+    public String getRoom_no() {
+        return room_no;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getManager_id() {
-        return manager_id;
+    public void setRoom_no(String room_no) {
+        this.room_no = room_no;
     }
 
-    public String getBalance_money() {
-        return balance_money;
+    public void setFloor(String floor) {
+        this.floor = floor;
     }
 
-    public void setAccount_id(String account_id) {
-        this.account_id = account_id;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setManager_id(String manager_id) {
-        this.manager_id = manager_id;
-    }
-
-    public void setBalance_money(String balance_money) {
-        this.balance_money = balance_money;
     }
 }
