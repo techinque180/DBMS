@@ -43,7 +43,7 @@ public class Declare extends AppCompatActivity {
     private String utility;
     private String level;
 
-   // private String why;
+//    private String why;
 
     private  String account;
 
@@ -103,57 +103,7 @@ public class Declare extends AppCompatActivity {
 
     }
 
-
-
-
-
-    private void receive() {
-        new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        response=executeHttpGet();
-                    }
-                }
-
-        ).start();
-    }
     JSONObject jsonObject=new JSONObject();
-    private String executeHttpGet() {
-
-        HttpURLConnection con=null;
-        InputStream in=null;
-        String      path="http://10.22.15.106//declared_connect/get_all_declared.php";
-        try {
-            con= (HttpURLConnection) new URL(path).openConnection();
-            con.setConnectTimeout(5000);
-            con.setReadTimeout(5000);
-            con.setDoInput(true);
-            con.setRequestMethod("GET");
-            if(con.getResponseCode()==200){
-
-                in=con.getInputStream();
-                return parseInfo(in);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-
-    private String parseInfo(InputStream in) throws IOException {
-        BufferedReader  br=new BufferedReader(new InputStreamReader(in));
-        StringBuilder sb=new StringBuilder();
-        String line=null;
-        while ((line=br.readLine())!=null){
-            sb.append(line+"\n");
-        }
-        Log.i(TAG, "parseInfo: sb:"+sb.toString());
-        return sb.toString();
-    }
 
 
     //傳送
@@ -193,7 +143,7 @@ public class Declare extends AppCompatActivity {
 
     private void executeHttpPost() {
 
-        String path="http://10.22.15.106/declared_connect/create_declared.php";
+        String path="http://192.168.1.101/declared_connect/create_declared.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

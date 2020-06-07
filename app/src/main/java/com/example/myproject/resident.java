@@ -27,6 +27,7 @@ public class resident extends AppCompatActivity {
     private Button bnt_resdamagelevel;
     private String account;
     private String result;
+    private BalanceData balanceData = new BalanceData();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +68,7 @@ public class resident extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(resident.this)
-                        .setTitle("餘額：")
+                        .setTitle("餘額：" + balanceData.getBalance_money())
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -102,7 +103,7 @@ public class resident extends AppCompatActivity {
         public void run() {
             try {
 //                10.22.15.106
-                URL url = new URL("http://10.22.15.106/account_connect/get_all_account.php");
+                URL url = new URL("http://192.168.1.101/account_connect/get_all_account.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -130,7 +131,6 @@ public class resident extends AppCompatActivity {
                 JSONArray array = new JSONArray(result);
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject jsonObject = array.getJSONObject(i);
-                    BalanceData balanceData = new BalanceData();
                     String room_no = jsonObject.getString("room_no");
                     if(account.equals(room_no)) {
                         balanceData.setBalance_money(jsonObject.getString("balance_money"));

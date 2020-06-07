@@ -77,12 +77,14 @@ public class rentcontentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(rentcontentActivity.this, "已歸還", Toast.LENGTH_LONG).show();
+                showDialog();
                 Intent intent = new Intent(rentcontentActivity.this, resident.class);
-
+                intent.putExtra("account", account);
                 startActivity(intent);
             }
         });
     }
+
 
     private void showDialog() {
         try {
@@ -107,7 +109,7 @@ public class rentcontentActivity extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 //        10.22.15.106
-        String path="http://10.22.15.106/utities_connect/utilities_delete.php";
+        String path="http://192.168.1.101/utities_connect/utilities_delete.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -154,7 +156,7 @@ public class rentcontentActivity extends AppCompatActivity {
         public void run() {
             try {
 //                10.22.15.106
-                URL url = new URL("http://10.22.15.106/utities_connect/utilitiesGetData.php");
+                URL url = new URL("http://192.168.1.101/utities_connect/utilitiesGetData.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -180,6 +182,7 @@ public class rentcontentActivity extends AppCompatActivity {
                 // 取得資料後想用不同的格式
                 // 例如 Json 等等，都是在這一段做處理
                 JSONArray array = new JSONArray(result);
+                int flag = 0;
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject jsonObject = array.getJSONObject(i);
                     if(jsonObject.getString("room_no").equals(account)) {
@@ -197,7 +200,21 @@ public class rentcontentActivity extends AppCompatActivity {
                         tv_rentmin.setText(jsonObject.getString("minute_start")); //從資料庫拿取租得分
                         returnhr.setText(jsonObject.getString("hour_end")); //從資料庫拿取歸還的時
                         returnmin.setText(jsonObject.getString("minute_end")); //從資料庫拿取歸還得分
+                        flag++;
                     }
+                }
+                if(flag == 1) {
+                    flag--;
+                }else{
+                    tv_rentpeople.setText(" ");
+                    tv_rentday.setText(" ");
+                    tv_renthr.setText(" ");
+                    tv_rentmin.setText(" ");
+                    tv_rentuti.setText(" ");
+                    tv_rentyear.setText(" ");
+                    returnhr.setText(" ");
+                    returnmin.setText(" ");
+                    rentmonth.setText(" ");
                 }
             } catch (Exception e) {
                 result = e.toString();
