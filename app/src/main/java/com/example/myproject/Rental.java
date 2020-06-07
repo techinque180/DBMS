@@ -266,8 +266,6 @@ public class Rental extends AppCompatActivity {
         String minute_e = String.valueOf(minute_end);
 
         try {
-            jsonObject.put("refund_status", "N");
-            jsonObject.put("use_status", "Y");
             jsonObject.put("room_no",account);
             jsonObject.put("npeople",nPeople);
             jsonObject.put("kind",kind);
@@ -319,7 +317,7 @@ public class Rental extends AppCompatActivity {
             // 往伺服器裡面傳送資料
             String Json=jsonObject.toString();
 
-            System.out.println("-----------    "+Json);
+            System.out.println("-----------"+Json);
 
             if (Json != null && !TextUtils.isEmpty(Json)) {
                 byte[] writebytes = Json.getBytes();

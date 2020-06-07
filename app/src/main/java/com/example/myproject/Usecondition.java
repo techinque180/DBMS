@@ -20,7 +20,7 @@ public class Usecondition extends AppCompatActivity {
     private String account;
     private Button btn_usedate ;
     private int useYear, useMonth, useDay;
-
+    private String result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
