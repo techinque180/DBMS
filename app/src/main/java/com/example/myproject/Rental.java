@@ -107,6 +107,9 @@ public class Rental extends AppCompatActivity {
                 lunch1);
         spinner_nPeople.setAdapter(lunch1List);
         nPeople = spinner_nPeople.getSelectedItem().toString();
+        ///////輸入人數到資料庫////////
+
+
 
         btn_date = (Button)findViewById(R.id.btn_date);
 
@@ -182,7 +185,7 @@ public class Rental extends AppCompatActivity {
                 ////////判斷租借時間是否已經存在於資料庫///////if(不存在){}
                 //////將Login畫面改成登入後的畫面//////
                 showDialog();
-                    System.out.println("rental_go");
+                System.out.println("rental_go");
                 Intent intent = new Intent(Rental.this, resident.class);
                 intent.putExtra("account", account);
                 Toast.makeText(Rental.this, "租借成功", Toast.LENGTH_LONG).show();
