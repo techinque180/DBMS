@@ -56,6 +56,7 @@ public class Declare extends AppCompatActivity {
         setContentView(R.layout.activity_declare);
         Intent intent = getIntent();
         account = intent.getStringExtra("account");//new
+
         et_reason = (EditText)findViewById(R.id.et_reason) ;
 
 
@@ -160,11 +161,12 @@ public class Declare extends AppCompatActivity {
         level = spinner_damageLevel.getSelectedItem().toString();
         utility = spinner_uti.getSelectedItem().toString();
         System.out.println("Ya" + spinner_damageLevel.getSelectedItem().toString());
+        System.out.println("account ="+account);
         try {
 
             System.out.println("here");
             //String reason=et_reason.getText().toString();
-            jsonObject.put("room_no","2");
+            jsonObject.put("room_no",account);
          //   jsonObject.put("uti_no","99");
            // jsonObject.put("reason", reason);
             jsonObject.put("kind",utility);
