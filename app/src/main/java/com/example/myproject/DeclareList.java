@@ -26,7 +26,7 @@ public class DeclareList extends AppCompatActivity {
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
 
-        //StrictMode.ThreadPolicy oldThreadPolicy = StrictMode.getThreadPolicy();
+        StrictMode.ThreadPolicy oldThreadPolicy = StrictMode.getThreadPolicy();
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
                 .detectDiskWrites()
@@ -34,12 +34,20 @@ public class DeclareList extends AppCompatActivity {
                 .penaltyLog()
                 .build());
 
-        //StrictMode.VmPolicy oldVmPolicy = StrictMode.getVmPolicy();
+        StrictMode.VmPolicy oldVmPolicy = StrictMode.getVmPolicy();
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
                 .detectLeakedSqlLiteObjects()
                 .penaltyLog()
                 .penaltyDeath()
                 .build());
+//        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+//                .detectAll()
+//                .penaltyLog()
+//                .penaltyDialog()
+//                .build());
+//        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll()
+//                .penaltyLog()
+//                .build());
 
 
         TableLayout tl_userList = (TableLayout)findViewById(R.id.tl_userList);
@@ -56,18 +64,24 @@ public class DeclareList extends AppCompatActivity {
                 tr.setLayoutParams(row_layout);
                 tr.setGravity(Gravity.CENTER_HORIZONTAL);
 
+
+                TextView user_room_no = new TextView(this);
+                user_room_no.setText(jsonData.getString("room_no"));
+                user_room_no.setLayoutParams(view_layout);
+
                 TextView user_uti = new TextView(this);
                 user_uti.setText(jsonData.getString("kind"));
                 user_uti.setLayoutParams(view_layout);
 
                 TextView user_level = new TextView(this);
-                user_level.setText(jsonData.getString("room_no"));
+                user_level.setText(jsonData.getString("damage_level"));
                 user_level.setLayoutParams(view_layout);
 
                 TextView user_why = new TextView(this);
                 user_why.setText(jsonData.getString("reason"));
                 user_why.setLayoutParams(view_layout);
 
+                tr.addView(user_room_no);
                 tr.addView(user_level);
                 tr.addView(user_uti);
                 tr.addView(user_why);

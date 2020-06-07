@@ -79,7 +79,6 @@ public class Rental extends AppCompatActivity {
     private String account;
 
 
-    private int declare_flag = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,16 +188,12 @@ public class Rental extends AppCompatActivity {
                     System.out.println("rental_go");
                 Intent intent = new Intent(Rental.this, resident.class);
                 intent.putExtra("account", account);
+                Toast.makeText(Rental.this, "租借成功", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
 
-        if(declare_flag == 0){
-            Toast.makeText(this, "此時段已借出", Toast.LENGTH_LONG).show();
-        }
-        else if(declare_flag == 2){
-            Toast.makeText(this, "租借成功", Toast.LENGTH_LONG).show();
-        }
+
 
     }
 
