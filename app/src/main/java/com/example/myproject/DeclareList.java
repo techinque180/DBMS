@@ -1,23 +1,30 @@
 package com.example.myproject;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.StrictMode;
-import android.util.Log;
-import android.view.Gravity;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class DeclareList extends AppCompatActivity {
     private  String account;
+    private String result;
+
+    private String room_no;
+    private TextView room;
+    private String kind;
+    private TextView uti;
+    private TextView reason;
+    private String damage_level;
+    private TextView level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,71 +33,66 @@ public class DeclareList extends AppCompatActivity {
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
 
-        StrictMode.ThreadPolicy oldThreadPolicy = StrictMode.getThreadPolicy();
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectDiskReads()
-                .detectDiskWrites()
-                .detectNetwork()
-                .penaltyLog()
-                .build());
 
-        StrictMode.VmPolicy oldVmPolicy = StrictMode.getVmPolicy();
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectLeakedSqlLiteObjects()
-                .penaltyLog()
-                .penaltyDeath()
-                .build());
-//        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-//                .detectAll()
-//                .penaltyLog()
-//                .penaltyDialog()
-//                .build());
-//        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll()
-//                .penaltyLog()
-//                .build());
+    }
+    private Runnable mutiThread = new Runnable() {
+        @Override
+        public void run() {
+            try {
+//                10.22.15.106
+                URL url = new URL("http://10.22.15.106/utities_connect/declareGetData.php");
 
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+                connection.setUseCaches(false);
+                connection.connect();
 
-        TableLayout tl_userList = (TableLayout)findViewById(R.id.tl_userList);
-        tl_userList.setStretchAllColumns(true);
-        TableLayout.LayoutParams row_layout = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
-        TableRow.LayoutParams view_layout = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
-        try{
-            String result = DBConnect.executeQuery("SELECT * FROM declared");
+                int responseCode = connection.getResponseCode();
 
-            JSONArray jsonArray = new JSONArray(result);
-            for(int i = 0; i <jsonArray.length(); i++){
-                JSONObject jsonData = jsonArray.getJSONObject(i);
-                TableRow tr = new TableRow(this);
-                tr.setLayoutParams(row_layout);
-                tr.setGravity(Gravity.CENTER_HORIZONTAL);
+                if(responseCode == HttpURLConnection.HTTP_OK) {
+                    InputStream inputStream = connection.getInputStream();
+                    BufferedReader bufReader = new BufferedReader(new InputStreamReader(inputStream));
+                    String box = "";
+                    String line = null;
+                    while ((line = bufReader.readLine()) != null ) {
+                        box += line + '\n';
+                    }
+                    inputStream.close();
+                    result = box;
+                }
+                // 讀取輸入串流並存到字串的部分
+                // 取得資料後想用不同的格式
+                // 例如 Json 等等，都是在這一段做處理
+                JSONArray array = new JSONArray(result);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject jsonObject = array.getJSONObject(i);
+                    room_no = jsonObject.getString("room_no");
+                    room.setText(room_no);
+                    kind = jsonObject.getString("kind");
+                    uti.setText(kind); //從資料庫拿取設施名字
+                    damage_level = jsonObject.getString("damage_level");
+                    level.setText(damage_level); //從資料庫拿取設施名字
+                    reason.setText(jsonObject.getString("reason")); //從資料庫拿取租的時
 
-
-                TextView user_room_no = new TextView(this);
-                user_room_no.setText(jsonData.getString("room_no"));
-                user_room_no.setLayoutParams(view_layout);
-
-                TextView user_uti = new TextView(this);
-                user_uti.setText(jsonData.getString("kind"));
-                user_uti.setLayoutParams(view_layout);
-
-                TextView user_level = new TextView(this);
-                user_level.setText(jsonData.getString("damage_level"));
-                user_level.setLayoutParams(view_layout);
-
-                TextView user_why = new TextView(this);
-                user_why.setText(jsonData.getString("reason"));
-                user_why.setLayoutParams(view_layout);
-
-                tr.addView(user_room_no);
-                tr.addView(user_level);
-                tr.addView(user_uti);
-                tr.addView(user_why);
-                tl_userList.addView(tr);
+                    room = (TextView) findViewById(R.id.room);
+                    level = (TextView) findViewById(R.id.level);
+                    uti = (TextView) findViewById(R.id.uti);
+                    reason = (TextView) findViewById(R.id.reason);
+                }
+            } catch (Exception e) {
+                result = e.toString();
             }
-        } catch (Exception e){
-            Log.e("log_tag", e.toString());
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    //textView.setText(result);
+                    System.out.println(result); // 更改顯示文字
+                }
+            });
         }
     }
+
 
 
 
