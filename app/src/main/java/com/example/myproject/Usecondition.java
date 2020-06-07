@@ -43,6 +43,9 @@ public class Usecondition extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         String useformat = setDateFormat(year, month, day);
                         btn_usedate.setText(useformat);
+                        useYear = year;
+                        useMonth = month + 1;
+                        useDay = day;
 
                         //////輸入日期資訊到資料庫//////
                     }
