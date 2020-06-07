@@ -85,9 +85,8 @@ public class Register extends AppCompatActivity {
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Thread thread = new Thread(mutiThread);
-//                thread.start();
                 showDialog();
+                showDialogMoney();
                 if((et_reg_passwd.getText().toString()).equals(et_reg_passwd_check.getText().toString())){
                     Toast.makeText(Register.this, "註冊成功", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Register.this, MainActivity.class);
@@ -99,44 +98,6 @@ public class Register extends AppCompatActivity {
             }
         });
 
-
-
-    }
-
-    private String executeHttpGet() {
-
-        HttpURLConnection con=null;
-        InputStream in=null;
-//        10.22.15.106
-        String      path="http://10.22.15.106/resident_connect/get_all_resident.php";
-        try {
-            con= (HttpURLConnection) new URL(path).openConnection();
-            con.setConnectTimeout(5000);
-            con.setReadTimeout(5000);
-            con.setDoInput(true);
-            con.setRequestMethod("GET");
-            if(con.getResponseCode()==200){
-
-                in=con.getInputStream();
-                return parseInfo(in);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    private String parseInfo(InputStream in) throws IOException {
-        BufferedReader  br=new BufferedReader(new InputStreamReader(in));
-        StringBuilder sb=new StringBuilder();
-        String line=null;
-        while ((line=br.readLine())!=null){
-            sb.append(line+"\n");
-        }
-        Log.i(TAG, "parseInfo: sb:"+sb.toString());
-        return sb.toString();
     }
 
     //傳送
@@ -189,6 +150,72 @@ public class Register extends AppCompatActivity {
 
             // 往伺服器裡面傳送資料
             String Json=jsonObject.toString();
+
+            System.out.println("-----------    "+Json);
+
+            if (Json != null && !TextUtils.isEmpty(Json)) {
+                byte[] writebytes = Json.getBytes();
+                // 設定檔案長度
+                conn.setRequestProperty("Content-Length", String.valueOf(writebytes.length));
+                OutputStream outwritestream = conn.getOutputStream();
+                outwritestream.write(Json.getBytes());
+                outwritestream.flush();
+                outwritestream.close();
+                Log.d("upload: ", "doJsonPost: "+conn.getResponseCode());//如輸出200，則對了
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //傳送
+    private void showDialogMoney() {
+        String room_no=et_roomNum.getText().toString();
+        try {
+            jsonObjectMoney.putOpt("room_no", room_no);
+            jsonObjectMoney.putOpt("manager_id","1");
+            jsonObjectMoney.putOpt("balance_money","0");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        };
+        sendMoney();
+    }
+
+    private void sendMoney() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                executeHttpPostMoney();
+            }
+        }).start();
+
+    }
+    JSONObject jsonObjectMoney=new JSONObject();
+    private void executeHttpPostMoney() {
+//        10.22.15.106
+        String path="http://10.22.15.106/account_connect/create_account.php";
+        try {
+            URL url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            //conn.setConnectTimeout(3000);     //設定連線超時時間
+            conn.setDoOutput(true);  //開啟輸出流，以便向伺服器提交資料
+            conn.setDoInput(true);  //開啟輸入流，以便從伺服器獲取資料
+            conn.setUseCaches(false);//使用Post方式不能使用快取
+            conn.setRequestMethod("POST");  //設定以Post方式提交資料
+            //conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Charset", "UTF-8");
+            // 設定檔案型別:
+            //conn.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+            // 設定接收型別否則返回415錯誤
+            //conn.setRequestProperty("accept","*/*")此處為暴力方法設定接受所有型別，以此來防範返回415;
+            conn.setRequestProperty("accept","application/json");
+
+            // 往伺服器裡面傳送資料
+            String Json=jsonObjectMoney.toString();
 
             System.out.println("-----------    "+Json);
 
