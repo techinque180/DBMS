@@ -43,7 +43,7 @@ public class Declare extends AppCompatActivity {
     private String utility;
     private String level;
 
-    private String why;
+   // private String why;
 
     private  String account;
 
@@ -55,7 +55,8 @@ public class Declare extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_declare);
         Intent intent = getIntent();
-        account = intent.getStringExtra("account");
+        account = intent.getStringExtra("account");//new
+
         et_reason = (EditText)findViewById(R.id.et_reason) ;
 
 
@@ -87,14 +88,16 @@ public class Declare extends AppCompatActivity {
             public void onClick(View v) {
                 showDialog();
                 ///////儲存原因(why)到資料庫/////////
-                why = et_reason.getText().toString();
+
                 ///////Login要改成登入後畫面///////
                 Intent intent = new Intent(Declare.this, resident.class);
+                Toast.makeText(Declare.this, "已送出", Toast.LENGTH_LONG).show();
                 startActivity(intent);
+
             }
         });
 
-        Toast.makeText(this, "已送出", Toast.LENGTH_LONG).show();
+
 
 
 
@@ -120,7 +123,7 @@ public class Declare extends AppCompatActivity {
 
         HttpURLConnection con=null;
         InputStream in=null;
-        String      path="http://10.22.15.106/declared_connect/get_all_declared.php";
+        String      path="http://10.22.15.106//declared_connect/get_all_declared.php";
         try {
             con= (HttpURLConnection) new URL(path).openConnection();
             con.setConnectTimeout(5000);
@@ -155,17 +158,23 @@ public class Declare extends AppCompatActivity {
 
     //傳送
     private void showDialog() {
-        String reason=et_reason.getText().toString();
+        String why = et_reason.getText().toString();//new
+        //String reason=et_reason.getText().toString();
         level = spinner_damageLevel.getSelectedItem().toString();
         utility = spinner_uti.getSelectedItem().toString();
         System.out.println("Ya" + spinner_damageLevel.getSelectedItem().toString());
+        System.out.println("account ="+account);
         try {
 
             System.out.println("here");
             //String reason=et_reason.getText().toString();
             jsonObject.put("room_no",account);
-            jsonObject.put("reason", reason);
+         //   jsonObject.put("uti_no","99");
+           // jsonObject.put("reason", reason);
             jsonObject.put("kind",utility);
+            jsonObject.put("reason", why);
+            jsonObject.put("damage_level",level);
+
 
         } catch (JSONException e) {
             e.printStackTrace();

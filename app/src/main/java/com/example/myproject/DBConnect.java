@@ -1,5 +1,7 @@
 package com.example.myproject;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,7 +23,7 @@ public class DBConnect {
 
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://localhost/declared.php");
+            HttpPost httpPost = new HttpPost("http://10.22.15.106/declared.php");
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("query_string", query_string));
             httpPost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
@@ -39,7 +41,7 @@ public class DBConnect {
             inputStream.close();
             result = builder.toString();
         } catch(Exception e) {
-            // Log.e("log_tag", e.toString());
+            Log.e("log_tag", e.toString());
         }
 
         return result;

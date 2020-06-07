@@ -1,12 +1,17 @@
 package com.example.myproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +37,7 @@ public class rentcontentActivity extends AppCompatActivity {
     private TextView tv_rentmin;
     private TextView returnhr;
     private TextView returnmin;
+    private Button bnt_return;
     private String account;
     private String result;
     private String room_no;
@@ -40,6 +46,7 @@ public class rentcontentActivity extends AppCompatActivity {
     private String year;
     private String month;
     private String day;
+    private int returnflag = 0;
 
 
 
@@ -64,6 +71,19 @@ public class rentcontentActivity extends AppCompatActivity {
         tv_rentmin = (TextView) findViewById(R.id.tv_rentmin);
         returnhr = (TextView) findViewById(R.id.returnhr);
         returnmin = (TextView) findViewById(R.id.returnmin);
+        bnt_return = (Button) findViewById(R.id.bnt_return);
+
+        bnt_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(rentcontentActivity.this, "已歸還", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(rentcontentActivity.this, resident.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
     }
 
