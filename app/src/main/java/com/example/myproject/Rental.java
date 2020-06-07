@@ -87,7 +87,7 @@ public class Rental extends AppCompatActivity {
 
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
-        System.out.println(account);
+        System.out.println("room:" + account);
 
         spinner_type = (Spinner)findViewById(R.id.spinner_type);
 
@@ -121,15 +121,17 @@ public class Rental extends AppCompatActivity {
                 mYear = c.get(Calendar.YEAR);
                 mMonth = c.get(Calendar.MONTH);
                 mDay = c.get(Calendar.DAY_OF_MONTH);
+                System.out.println(mYear + "/" + mMonth + "/" + mDay);
                 new DatePickerDialog(Rental.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         String format = setDateFormat(year, month, day);
                         btn_date.setText(format);
-
-                        //////輸入日期資訊到資料庫//////
+                        mYear = year;
+                        mMonth = month + 1;
+                        mDay = day;
+                        System.out.println(format);
                     }
-
                 }, mYear, mMonth, mDay).show();
             }
 
@@ -148,9 +150,8 @@ public class Rental extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         btn_timeStart.setText(hourOfDay + ":" + minute);
-                        System.out.println("start" + hour_start + " " + minute_start);
-
-                        ///////輸入時間資訊到資料庫//////
+                        hour_start = hourOfDay;
+                        minute_start = minute;
                     }
                 }, hour_start, minute_start, true).show();
             }
@@ -170,9 +171,8 @@ public class Rental extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         btn_timeEnd.setText(hourOfDay + ":" + minute);
-                        System.out.println("end:" + hour_end + " " + minute_end);
-
-                        ///////輸入時間資訊到資料庫//////
+                        hour_end = hourOfDay;
+                        minute_end = minute;
                     }
                 }, hour_end, minute_end, true).show();
             }
