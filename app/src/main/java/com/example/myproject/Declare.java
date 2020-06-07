@@ -163,12 +163,9 @@ public class Declare extends AppCompatActivity {
 
             System.out.println("here");
             //String reason=et_reason.getText().toString();
-            jsonObject.put("room_no","1");
-            jsonObject.put("uti_no","99");
+            jsonObject.put("room_no",account);
             jsonObject.put("reason", reason);
             jsonObject.put("kind",utility);
-            jsonObject.put("dam_level",level);
-
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -266,7 +266,6 @@ public class Rental extends AppCompatActivity {
         String minute_e = String.valueOf(minute_end);
 
         try {
-            jsonObject.put("damage_level", null);
             jsonObject.put("refund_status", "N");
             jsonObject.put("use_status", "Y");
             jsonObject.put("room_no",account);
