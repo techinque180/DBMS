@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             try {
 //                10.22.15.106
-                URL url = new URL("http://192.168.1.101/accountGetdata.php");
+                URL url = new URL("http://10.22.15.106/accountGetdata.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");

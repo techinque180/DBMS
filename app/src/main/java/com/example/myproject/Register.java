@@ -131,7 +131,7 @@ public class Register extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 //        10.22.15.106
-        String path="http://1192.168.1.101/resident_connect/create_resident.php";
+        String path="http://10.22.15.106/resident_connect/create_resident.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -197,7 +197,7 @@ public class Register extends AppCompatActivity {
     JSONObject jsonObjectMoney=new JSONObject();
     private void executeHttpPostMoney() {
 //        10.22.15.106
-        String path="http://192.168.1.101/account_connect/create_account.php";
+        String path="http://10.22.15.106/account_connect/create_account.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

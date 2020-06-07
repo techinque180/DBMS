@@ -103,7 +103,7 @@ public class resident extends AppCompatActivity {
         public void run() {
             try {
 //                10.22.15.106
-                URL url = new URL("http://192.168.1.101/account_connect/get_all_account.php");
+                URL url = new URL("http://10.22.15.106/account_connect/get_all_account.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
