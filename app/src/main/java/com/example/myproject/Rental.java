@@ -107,9 +107,6 @@ public class Rental extends AppCompatActivity {
                 lunch1);
         spinner_nPeople.setAdapter(lunch1List);
         nPeople = spinner_nPeople.getSelectedItem().toString();
-        ///////輸入人數到資料庫////////
-
-
 
         btn_date = (Button)findViewById(R.id.btn_date);
 
