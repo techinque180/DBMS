@@ -161,10 +161,12 @@ public class Usecondition extends AppCompatActivity {
                             time2.setText(hourstart+":"+minstart+"~"+hourend+":"+minend);
                         }
                     }else{
-                        kind1.setText(" ");
-                        time1.setText(" ");
-                        kind2.setText(" ");
-                        time2.setText(" ");
+                        if(flag == 0) {
+                            kind1.setText(" ");
+                            time1.setText(" ");
+                            kind2.setText(" ");
+                            time2.setText(" ");
+                        }
                     }
                     flag = 0;
                 }
