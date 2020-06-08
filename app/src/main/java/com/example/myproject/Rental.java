@@ -88,7 +88,7 @@ public class Rental extends AppCompatActivity {
         account = intent.getStringExtra("account");
         flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
         System.out.println("room:" + account);
-
+        setTitle("租借公共設施");
         spinner_type = (Spinner)findViewById(R.id.spinner_type);
 
         final String[] lunch = {"KTV01", "KTV02", "健身房01", "游泳池01", "討論室01", "討論室02", "討論室03", "討論室04"};

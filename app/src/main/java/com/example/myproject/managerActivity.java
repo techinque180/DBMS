@@ -19,6 +19,7 @@ public class managerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
 
+        setTitle("管理員");
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
         flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);

@@ -60,7 +60,7 @@ public class rentcontentActivity extends AppCompatActivity {
         account = intent.getStringExtra("account");
         flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
         System.out.println("room_no is " + account);
-
+        setTitle("租借紀錄");
         Thread thread = new Thread(mutiThread);
         thread.start();
 

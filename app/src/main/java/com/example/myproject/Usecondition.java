@@ -31,7 +31,7 @@ public class Usecondition extends AppCompatActivity {
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
         flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
-
+        setTitle("設施使用狀況");
         btn_usedate = (Button) findViewById(R.id.btn_usedate);
         btn_usedate.setOnClickListener(new View.OnClickListener() {
             @Override

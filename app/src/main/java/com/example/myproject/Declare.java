@@ -59,6 +59,7 @@ public class Declare extends AppCompatActivity {
         account = intent.getStringExtra("account");//new
         flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
         et_reason = (EditText)findViewById(R.id.et_reason) ;
+        setTitle("申報設施");
 
 
         spinner_uti = (Spinner)findViewById(R.id.spinner_uti);

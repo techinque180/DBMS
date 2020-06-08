@@ -81,7 +81,7 @@ public class Register extends AppCompatActivity {
         roomNum = et_roomNum.getText().toString();
         phoneNum = et_phoneNum.getText().toString();
 
-
+        setTitle("註冊");
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

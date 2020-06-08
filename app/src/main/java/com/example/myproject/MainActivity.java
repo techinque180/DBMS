@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         spinner_identity = (Spinner)findViewById(R.id.spinner_identity);
+        setTitle("登入");
 
         final String[] lunch = {"住戶", "管理員"};
         ArrayAdapter<String> lunchList = new ArrayAdapter<>( MainActivity.this,

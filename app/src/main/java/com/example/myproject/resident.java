@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,6 +28,7 @@ public class resident extends AppCompatActivity {
     private Button bnt_resdamagelevel;
     private String account;
     private String result;
+
     private int flag_usecondition;
     private BalanceData balanceData = new BalanceData();
     @Override
@@ -37,7 +39,7 @@ public class resident extends AppCompatActivity {
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
         flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
-
+        setTitle("住戶房號：" + account);
         bnt_record = (Button) findViewById(R.id.bnt_record);
         bnt_rent = (Button) findViewById(R.id.bnt_rent);
         bnt_ressearchbalance = (Button) findViewById(R.id.bnt_ressearchbalance);
