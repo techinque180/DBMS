@@ -21,6 +21,7 @@ public class managerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
+        flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
 
         bnt_mansearchdamage = (Button) findViewById(R.id.bnt_mansearchdamage);
         bnt_manusecondition = (Button) findViewById(R.id.bnt_manusecondition);
@@ -32,6 +33,7 @@ public class managerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //跳到申報紀錄畫面
                 Intent intent = new Intent(managerActivity.this, DeclareList.class);
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);//跳到使用狀況畫面
             }
         });
@@ -40,6 +42,7 @@ public class managerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(managerActivity.this, Usecondition.class);
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);//跳到使用狀況畫面
             }
         });
@@ -48,6 +51,7 @@ public class managerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(managerActivity.this, Store.class);
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);//跳到儲值畫面
             }
         });

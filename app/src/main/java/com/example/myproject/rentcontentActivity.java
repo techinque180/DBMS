@@ -47,6 +47,7 @@ public class rentcontentActivity extends AppCompatActivity {
     private String month;
     private String day;
     private int returnflag = 0;
+    private int flag_usecondition;
 
 
 
@@ -57,6 +58,7 @@ public class rentcontentActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
+        flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
         System.out.println("room_no is " + account);
 
         Thread thread = new Thread(mutiThread);
@@ -87,6 +89,7 @@ public class rentcontentActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(rentcontentActivity.this, resident.class);
+        intent.putExtra("flag_usecondition", flag_usecondition);
         startActivity(intent);
     }
 

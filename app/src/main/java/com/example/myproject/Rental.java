@@ -75,7 +75,7 @@ public class Rental extends AppCompatActivity {
     private int minute_start;
     private int hour_end;
     private int minute_end;
-
+    private int flag_usecondition;
     private String account;
 
 
@@ -86,6 +86,7 @@ public class Rental extends AppCompatActivity {
 
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
+        flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
         System.out.println("room:" + account);
 
         spinner_type = (Spinner)findViewById(R.id.spinner_type);
@@ -201,6 +202,7 @@ public class Rental extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(Rental.this, resident.class);
+        intent.putExtra("flag_usecondition", flag_usecondition);
         startActivity(intent);
     }
     /*從MySQL裡獲取資料*/

@@ -30,6 +30,7 @@ public class Store extends AppCompatActivity {
     private EditText et_store_manager;
     private Button bnt_storesend;
     private String account;
+    private int flag_usecondition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class Store extends AppCompatActivity {
 
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
+        flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
 
         et_storeroom = (EditText) findViewById(R.id.et_storeroom);
         et_store_money = (EditText) findViewById(R.id.et_storemoney);
@@ -56,6 +58,7 @@ public class Store extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(Store.this, managerActivity.class);
+        intent.putExtra("flag_usecondition", flag_usecondition);
         startActivity(intent);
 
     }
