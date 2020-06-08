@@ -32,6 +32,20 @@ public class DeclareList extends AppCompatActivity {
     private String damage_level;
     private TextView level;
     private LinearLayout container;
+    private TextView tv11;
+    private TextView tv12;
+    private TextView tv13;
+    private TextView tv14;
+    private TextView tv21;
+    private TextView tv22;
+    private TextView tv23;
+    private TextView tv24;
+    private TextView tv31;
+    private TextView tv32;
+    private TextView tv33;
+    private TextView tv34;
+
+
 
 
     @Override
@@ -41,6 +55,18 @@ public class DeclareList extends AppCompatActivity {
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
         LinearLayout mContainer = findViewById(R.id.container);
+        tv11 = (TextView)findViewById(R.id.tv11);
+        tv12 = (TextView)findViewById(R.id.tv11);
+        tv13 = (TextView)findViewById(R.id.tv11);
+        tv14 = (TextView)findViewById(R.id.tv11);
+        tv21 = (TextView)findViewById(R.id.tv11);
+        tv22 = (TextView)findViewById(R.id.tv11);
+        tv23 = (TextView)findViewById(R.id.tv11);
+        tv24 = (TextView)findViewById(R.id.tv11);
+        tv31 = (TextView)findViewById(R.id.tv11);
+        tv32 = (TextView)findViewById(R.id.tv11);
+        tv33 = (TextView)findViewById(R.id.tv11);
+        tv34 = (TextView)findViewById(R.id.tv11);
 
         Thread thread = new Thread(mutiThread);
         thread.start();
@@ -78,11 +104,11 @@ public class DeclareList extends AppCompatActivity {
                 // 讀取輸入串流並存到字串的部分
                 // 取得資料後想用不同的格式
                 // 例如 Json 等等，都是在這一段做處理
-                TableLayout user_list = (TableLayout)findViewById(R.id.tl_userList);
-                //LinearLayout ll = (LinearLayout)findViewById(R.id.tv_declareList);
-                user_list.setStretchAllColumns(true);
-                TableLayout.LayoutParams row_layout = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
-                TableRow.LayoutParams view_layout = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+//                TableLayout user_list = (TableLayout)findViewById(R.id.tl_userList);
+//                //LinearLayout ll = (LinearLayout)findViewById(R.id.tv_declareList);
+//                user_list.setStretchAllColumns(true);
+//                TableLayout.LayoutParams row_layout = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+//                TableRow.LayoutParams view_layout = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
                 JSONArray array = new JSONArray(result);
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject jsonObject = array.getJSONObject(i);
@@ -94,38 +120,56 @@ public class DeclareList extends AppCompatActivity {
                     //level.setText(damage_level); //從資料庫拿取設施名字
                     reason = jsonObject.getString("reason");
                     //reason.setText(jsonObject.getString("reason")); //從資料庫拿取租的時
+                    System.out.println("i:"+i);
+                    System.out.println(room_no+ kind+damage_level+reason);
 
-//                    room = (TextView) findViewById(R.id.room);
-//                    level = (TextView) findViewById(R.id.level);
-//                    uti = (TextView) findViewById(R.id.uti);
-//                    reason = (TextView) findViewById(R.id.reason);
-                    TableRow tr = new TableRow(DeclareList.this);
-                    tr.setLayoutParams(row_layout);
-                    tr.setGravity(Gravity.CENTER_HORIZONTAL);
-
-                    //TextView child = new TextView(DeclareList.this);
-
-                    TextView user_room = new TextView(DeclareList.this);
-                    user_room.setText(room_no);
-                    user_room.setLayoutParams(view_layout);
-
-                    TextView user_level = new TextView(DeclareList.this);
-                    user_level.setText(damage_level);
-                    user_level.setLayoutParams(view_layout);
-
-                    TextView user_kind= new TextView(DeclareList.this);
-                    user_kind.setText(kind);
-                    user_kind.setLayoutParams(view_layout);
-
-                    TextView user_reason = new TextView(DeclareList.this);
-                    user_reason.setText(reason);
-                    user_reason.setLayoutParams(view_layout);
-
-                    tr.addView(user_room);
-                    tr.addView(user_level);
-                    tr.addView(user_kind);
-                    tr.addView(user_reason);
-                    user_list.addView(tr);
+                    if(i == 0){
+                        tv11.setText("room_no");
+                        tv12.setText("kind");
+                        tv13.setText(damage_level);
+                        tv14.setText(reason);
+                    }else if(i == 1){
+                        tv21.setText(room_no);
+                        tv22.setText(kind);
+                        tv23.setText(damage_level);
+                        tv24.setText(reason);
+                    }else if(i == 2){
+                        tv31.setText(room_no);
+                        tv32.setText(kind);
+                        tv33.setText(damage_level);
+                        tv34.setText(reason);
+                    }
+//                    TableRow tr = new TableRow(DeclareList.this);
+//                    tr.setLayoutParams(row_layout);
+//                    tr.setGravity(Gravity.CENTER_HORIZONTAL);
+//
+//                    //TextView child = new TextView(DeclareList.this);
+//
+//                    TextView user_room = new TextView(DeclareList.this);
+//                    user_room.setText(room_no);
+//                    user_room.setTextSize(20);
+//                    user_room.setLayoutParams(view_layout);
+//
+//                    TextView user_level = new TextView(DeclareList.this);
+//                    user_level.setText(damage_level);
+//                    user_level.setTextSize(20);
+//                    user_level.setLayoutParams(view_layout);
+//
+//                    TextView user_kind= new TextView(DeclareList.this);
+//                    user_kind.setText(kind);
+//                    user_kind.setTextSize(20);
+//                    user_kind.setLayoutParams(view_layout);
+//
+//                    TextView user_reason = new TextView(DeclareList.this);
+//                    user_reason.setText(reason);
+//                    user_reason.setTextSize(20);
+//                    user_reason.setLayoutParams(view_layout);
+//
+//                    tr.addView(user_room);
+//                    tr.addView(user_level);
+//                    tr.addView(user_kind);
+//                    tr.addView(user_reason);
+//                    user_list.addView(tr);
                 }
             } catch (Exception e) {
                 result = e.toString();
@@ -138,8 +182,4 @@ public class DeclareList extends AppCompatActivity {
             });
         }
     };
-
-
-
-
 }
