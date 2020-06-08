@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,8 +30,10 @@ public class Store extends AppCompatActivity {
     private EditText et_store_money;
     private EditText et_store_manager;
     private Button bnt_storesend;
-    private String account;
     private int flag_usecondition;
+    private String result;
+    private String account;
+    private BalanceData balanceData = new BalanceData();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,7 @@ public class Store extends AppCompatActivity {
             public void onClick(View v) {
                 showDialog();
                 showDialogMoney();
+                showDialogStored();
                 Intent intent = new Intent(Store.this, managerActivity.class);
                 intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);
@@ -176,6 +180,71 @@ public class Store extends AppCompatActivity {
 
             // 往伺服器裡面傳送資料
             String Json=jsonObjectMoney.toString();
+
+            System.out.println("-----------    "+Json);
+
+            if (Json != null && !TextUtils.isEmpty(Json)) {
+                byte[] writebytes = Json.getBytes();
+                // 設定檔案長度
+                conn.setRequestProperty("Content-Length", String.valueOf(writebytes.length));
+                OutputStream outwritestream = conn.getOutputStream();
+                outwritestream.write(Json.getBytes());
+                outwritestream.flush();
+                outwritestream.close();
+                Log.d("upload: ", "doJsonPost: "+conn.getResponseCode());//如輸出200，則對了
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //傳送
+    private void showDialogStored() {
+        String room_no=et_storeroom.getText().toString();
+        String stored_money= et_store_money.getText().toString();
+        try {
+            jsonObjectStored.putOpt("room_no", room_no);
+            jsonObjectStored.putOpt("stored_money", stored_money);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        };
+        sendStored();
+    }
+
+    private void sendStored() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                executeHttpPostStored();
+            }
+        }).start();
+
+    }
+    JSONObject jsonObjectStored=new JSONObject();
+    private void executeHttpPostStored() {
+//        10.22.15.106
+        String path="http://10.22.23.6/transaction_connect/transaction_update.php";
+        try {
+            URL url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            //conn.setConnectTimeout(3000);     //設定連線超時時間
+            conn.setDoOutput(true);  //開啟輸出流，以便向伺服器提交資料
+            conn.setDoInput(true);  //開啟輸入流，以便從伺服器獲取資料
+            conn.setUseCaches(false);//使用Post方式不能使用快取
+            conn.setRequestMethod("POST");  //設定以Post方式提交資料
+            //conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Charset", "UTF-8");
+            // 設定檔案型別:
+            //conn.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+            // 設定接收型別否則返回415錯誤
+            //conn.setRequestProperty("accept","*/*")此處為暴力方法設定接受所有型別，以此來防範返回415;
+            conn.setRequestProperty("accept","application/json");
+
+            // 往伺服器裡面傳送資料
+            String Json=jsonObjectStored.toString();
 
             System.out.println("-----------    "+Json);
 

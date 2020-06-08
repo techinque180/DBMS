@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             try {
-//                10.22.15.106
+//                10.22.23.6
                 URL url = new URL("http://10.22.23.6/accountGetdata.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();

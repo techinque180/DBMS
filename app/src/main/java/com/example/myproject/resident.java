@@ -115,7 +115,7 @@ public class resident extends AppCompatActivity {
         @Override
         public void run() {
             try {
-//                10.22.15.106
+//                10.22.23.6
                 URL url = new URL("http://10.22.23.6/account_connect/get_all_account.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();

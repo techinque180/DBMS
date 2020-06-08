@@ -207,54 +207,6 @@ public class Rental extends AppCompatActivity {
         intent.putExtra("account", account);
         startActivity(intent);
     }
-    /*從MySQL裡獲取資料*/
-    private void receive() {
-        new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        response=executeHttpGet();
-                    }
-                }
-
-        ).start();
-    }
-
-    private String executeHttpGet() {
-
-        HttpURLConnection con=null;
-        InputStream in=null;
-//        10.22.15.106
-        String      path="http://10.22.23.6/utities_connect/get_all_utilities.php";
-        try {
-            con= (HttpURLConnection) new URL(path).openConnection();
-            con.setConnectTimeout(5000);
-            con.setReadTimeout(5000);
-            con.setDoInput(true);
-            con.setRequestMethod("GET");
-            if(con.getResponseCode()==200){
-
-                in=con.getInputStream();
-                return parseInfo(in);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    private String parseInfo(InputStream in) throws IOException {
-        BufferedReader  br=new BufferedReader(new InputStreamReader(in));
-        StringBuilder sb=new StringBuilder();
-        String line=null;
-        while ((line=br.readLine())!=null){
-            sb.append(line+"\n");
-        }
-        Log.i(TAG, "parseInfo: sb:"+sb.toString());
-        return sb.toString();
-    }
 
 
     /*傳送資料給MySQL資料庫*/
@@ -363,7 +315,7 @@ public class Rental extends AppCompatActivity {
     }
     JSONObject jsonObjectMoney=new JSONObject();
     private void executeHttpPostMoney() {
-//        10.22.15.106
+//        10.22.23.6
         String path="http://10.22.23.6/account_connect/account_update_rental.php";
         try {
             URL url = new URL(path);
