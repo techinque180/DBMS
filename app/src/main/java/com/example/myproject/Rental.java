@@ -292,7 +292,7 @@ public class Rental extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 //        10.22.15.106
-        String path="http://10.22.15.106/utities_connect/create_utilities.php";
+        String path="http://10.22.23.6/utities_connect/create_utilities.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

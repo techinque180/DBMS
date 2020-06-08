@@ -3,7 +3,10 @@ package com.example.myproject;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -22,7 +25,7 @@ public class DeclareList extends AppCompatActivity {
     private TextView room;
     private String kind;
     private TextView uti;
-    private TextView reason;
+    private String reason;
     private String damage_level;
     private TextView level;
 
@@ -40,7 +43,7 @@ public class DeclareList extends AppCompatActivity {
         public void run() {
             try {
 //                10.22.15.106
-                URL url = new URL("http://10.22.15.106/utities_connect/declareGetData.php");
+                URL url = new URL("http://http://10.22.23.6/utities_connect/declareGetData.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -65,21 +68,51 @@ public class DeclareList extends AppCompatActivity {
                 // 讀取輸入串流並存到字串的部分
                 // 取得資料後想用不同的格式
                 // 例如 Json 等等，都是在這一段做處理
+                TableLayout user_list = (TableLayout)findViewById(R.id.tl_userList);
+                user_list.setStretchAllColumns(true);
+                TableLayout.LayoutParams row_layout = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+                TableRow.LayoutParams view_layout = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
                 JSONArray array = new JSONArray(result);
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject jsonObject = array.getJSONObject(i);
                     room_no = jsonObject.getString("room_no");
-                    room.setText(room_no);
+                    //room.setText(room_no);
                     kind = jsonObject.getString("kind");
-                    uti.setText(kind); //從資料庫拿取設施名字
+                    //uti.setText(kind); //從資料庫拿取設施名字
                     damage_level = jsonObject.getString("damage_level");
-                    level.setText(damage_level); //從資料庫拿取設施名字
-                    reason.setText(jsonObject.getString("reason")); //從資料庫拿取租的時
+                    //level.setText(damage_level); //從資料庫拿取設施名字
+                    reason = jsonObject.getString("reason");
+                    //reason.setText(jsonObject.getString("reason")); //從資料庫拿取租的時
 
-                    room = (TextView) findViewById(R.id.room);
-                    level = (TextView) findViewById(R.id.level);
-                    uti = (TextView) findViewById(R.id.uti);
-                    reason = (TextView) findViewById(R.id.reason);
+//                    room = (TextView) findViewById(R.id.room);
+//                    level = (TextView) findViewById(R.id.level);
+//                    uti = (TextView) findViewById(R.id.uti);
+//                    reason = (TextView) findViewById(R.id.reason);
+                    TableRow tr = new TableRow(DeclareList.this);
+                    tr.setLayoutParams(row_layout);
+                    tr.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                    TextView user_room = new TextView(DeclareList.this);
+                    user_room.setText(room_no);
+                    user_room.setLayoutParams(view_layout);
+
+                    TextView user_level = new TextView(DeclareList.this);
+                    user_level.setText(damage_level);
+                    user_level.setLayoutParams(view_layout);
+
+                    TextView user_kind= new TextView(DeclareList.this);
+                    user_kind.setText(kind);
+                    user_kind.setLayoutParams(view_layout);
+
+                    TextView user_reason = new TextView(DeclareList.this);
+                    user_reason.setText(reason);
+                    user_reason.setLayoutParams(view_layout);
+
+                    tr.addView(user_room);
+                    tr.addView(user_level);
+                    tr.addView(user_kind);
+                    tr.addView(user_reason);
+                    user_list.addView(tr);
                 }
             } catch (Exception e) {
                 result = e.toString();
@@ -91,7 +124,7 @@ public class DeclareList extends AppCompatActivity {
                 }
             });
         }
-    }
+    };
 
 
 

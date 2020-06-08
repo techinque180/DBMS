@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myproject">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission
@@ -18,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Usecondition"></activity>
+        <activity android:name=".Usecondition" />
         <activity android:name=".Declare" />
         <activity android:name=".Store" />
         <activity android:name=".resident" />
@@ -26,6 +27,12 @@
         <activity android:name=".Register" />
         <activity android:name=".rentcontentActivity" />
         <activity android:name=".managerActivity" />
+        <activity android:name=".DeclareList">
+
+        </activity>
+        <activity
+            android:name=".DBConnect"
+            tools:ignore="Instantiatable" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -83,7 +83,7 @@ public class Store extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 
-        String path="http://10.22.15.106/transaction_connect/create_transaction.php";
+        String path="http://10.22.23.6/transaction_connect/create_transaction.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

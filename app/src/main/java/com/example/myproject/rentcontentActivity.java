@@ -109,7 +109,7 @@ public class rentcontentActivity extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 //        10.22.15.106
-        String path="http://10.22.15.106/utities_connect/utilities_delete.php";
+        String path="http://10.22.23.6/utities_connect/utilities_delete.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
