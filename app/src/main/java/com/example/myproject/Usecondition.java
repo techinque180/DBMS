@@ -70,12 +70,14 @@ public class Usecondition extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         String useformat = setDateFormat(year, month, day);
-                        System.out.println(useDay+":"+useMonth);
+
                         btn_usedate.setText(useformat);
                         useYear = year;
                         useMonth = month + 1;
                         useDay = day;
-
+                        System.out.println(useDay+":"+useMonth);
+                        Thread thread = new Thread(mutiThread);
+                        thread.start();
                         //////輸入日期資訊到資料庫//////
                     }
 
@@ -83,6 +85,7 @@ public class Usecondition extends AppCompatActivity {
             }
 
         });
+
     }
 
     @Override
@@ -139,18 +142,15 @@ public class Usecondition extends AppCompatActivity {
 
 
                     kind = jsonObject.getString("kind");
-                    //uti.setText(kind); //從資料庫拿取設施名字
                     month = jsonObject.getString("month");
-                    //level.setText(damage_level); //從資料庫拿取設施名字
                     day = jsonObject.getString("day");
                     hourstart = jsonObject.getString("hour_start");
                     minstart = jsonObject.getString("minute_start");
                     hourend = jsonObject.getString("hour_end");
                     minend = jsonObject.getString("minute_end");
-                    //reason.setText(jsonObject.getString("reason")); //從資料庫拿取租的時
+                    System.out.println(day+"/"+month);
                     if(String.valueOf(useDay).equals(day)  && String.valueOf(useMonth).equals(month)){
                         if(flag == 0){
-
                             System.out.println(useDay+useMonth);
                             kind1.setText(kind);
                             time1.setText(hourstart+":"+minstart+"~"+hourend+":"+minend);
@@ -160,6 +160,11 @@ public class Usecondition extends AppCompatActivity {
                             kind2.setText(kind);
                             time2.setText(hourstart+":"+minstart+"~"+hourend+":"+minend);
                         }
+                    }else{
+                        kind1.setText(" ");
+                        time1.setText(" ");
+                        kind2.setText(" ");
+                        time2.setText(" ");
                     }
                     flag = 0;
                 }
