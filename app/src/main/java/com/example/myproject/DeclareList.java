@@ -1,10 +1,13 @@
 package com.example.myproject;
 
+import androidx.annotation.ColorRes;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -28,7 +31,8 @@ public class DeclareList extends AppCompatActivity {
     private String reason;
     private String damage_level;
     private TextView level;
-    private int flag_usecondition;
+    private LinearLayout container;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +40,19 @@ public class DeclareList extends AppCompatActivity {
         setContentView(R.layout.activity_declare_list);
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
-        flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
-        setTitle("申報狀況");
+        LinearLayout mContainer = findViewById(R.id.container);
+
+        Thread thread = new Thread(mutiThread);
+        thread.start();
 
     }
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(DeclareList.this, managerActivity.class);
-        intent.putExtra("flag_usecondition", flag_usecondition);
-        startActivity(intent);
 
-    }
     private Runnable mutiThread = new Runnable() {
         @Override
         public void run() {
             try {
 //                10.22.15.106
-                URL url = new URL("http://10.22.23.6/utities_connect/declareGetData.php");
+                URL url = new URL("http://10.22.23.6/declared_connect/declaredGetData.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -79,6 +79,7 @@ public class DeclareList extends AppCompatActivity {
                 // 取得資料後想用不同的格式
                 // 例如 Json 等等，都是在這一段做處理
                 TableLayout user_list = (TableLayout)findViewById(R.id.tl_userList);
+                //LinearLayout ll = (LinearLayout)findViewById(R.id.tv_declareList);
                 user_list.setStretchAllColumns(true);
                 TableLayout.LayoutParams row_layout = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
                 TableRow.LayoutParams view_layout = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
@@ -101,6 +102,8 @@ public class DeclareList extends AppCompatActivity {
                     TableRow tr = new TableRow(DeclareList.this);
                     tr.setLayoutParams(row_layout);
                     tr.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                    //TextView child = new TextView(DeclareList.this);
 
                     TextView user_room = new TextView(DeclareList.this);
                     user_room.setText(room_no);
