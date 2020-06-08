@@ -143,7 +143,7 @@ public class Declare extends AppCompatActivity {
 
     private void executeHttpPost() {
 
-        String path="http://10.22.15.106/declared_connect/create_declared.php";
+        String path="http://10.22.23.6/declared_connect/create_declared.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
