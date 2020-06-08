@@ -56,17 +56,17 @@ public class DeclareList extends AppCompatActivity {
         account = intent.getStringExtra("account");
         LinearLayout mContainer = findViewById(R.id.container);
         tv11 = (TextView)findViewById(R.id.tv11);
-        tv12 = (TextView)findViewById(R.id.tv11);
-        tv13 = (TextView)findViewById(R.id.tv11);
-        tv14 = (TextView)findViewById(R.id.tv11);
-        tv21 = (TextView)findViewById(R.id.tv11);
-        tv22 = (TextView)findViewById(R.id.tv11);
-        tv23 = (TextView)findViewById(R.id.tv11);
-        tv24 = (TextView)findViewById(R.id.tv11);
-        tv31 = (TextView)findViewById(R.id.tv11);
-        tv32 = (TextView)findViewById(R.id.tv11);
-        tv33 = (TextView)findViewById(R.id.tv11);
-        tv34 = (TextView)findViewById(R.id.tv11);
+        tv12 = (TextView)findViewById(R.id.tv12);
+        tv13 = (TextView)findViewById(R.id.tv13);
+        tv14 = (TextView)findViewById(R.id.tv14);
+        tv21 = (TextView)findViewById(R.id.tv21);
+        tv22 = (TextView)findViewById(R.id.tv22);
+        tv23 = (TextView)findViewById(R.id.tv23);
+        tv24 = (TextView)findViewById(R.id.tv24);
+        tv31 = (TextView)findViewById(R.id.tv31);
+        tv32 = (TextView)findViewById(R.id.tv32);
+        tv33 = (TextView)findViewById(R.id.tv33);
+        tv34 = (TextView)findViewById(R.id.tv34);
 
         Thread thread = new Thread(mutiThread);
         thread.start();
@@ -124,8 +124,8 @@ public class DeclareList extends AppCompatActivity {
                     System.out.println(room_no+ kind+damage_level+reason);
 
                     if(i == 0){
-                        tv11.setText("room_no");
-                        tv12.setText("kind");
+                        tv11.setText(room_no);
+                        tv12.setText(kind);
                         tv13.setText(damage_level);
                         tv14.setText(reason);
                     }else if(i == 1){

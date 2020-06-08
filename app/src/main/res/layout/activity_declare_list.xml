@@ -32,13 +32,13 @@
 
         </TextView>
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="40dp"
             android:layout_height="50dp"
             android:id="@+id/tv13">
 
         </TextView>
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:id="@+id/tv14">
 
@@ -62,13 +62,13 @@
 
         </TextView>
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="40dp"
             android:layout_height="50dp"
             android:id="@+id/tv23">
 
         </TextView>
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:id="@+id/tv24">
 
@@ -92,13 +92,13 @@
 
         </TextView>
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="40dp"
             android:layout_height="50dp"
             android:id="@+id/tv33">
 
         </TextView>
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:id="@+id/tv34">
 
