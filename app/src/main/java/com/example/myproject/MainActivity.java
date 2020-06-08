@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_login;
     private Button btn_reg;
     private  String result;
+    private int flag_usecondition = 0;
     private accountData[] accountDatas = new accountData[20];
 
     @Override
@@ -68,13 +69,16 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println("login");
                         /////登入成功跳到主畫面
                         if(spinner_identity.getSelectedItem().toString().equals("住戶")){
-
+                            flag_usecondition = 1;
                             Intent resident_intent = new Intent(MainActivity.this, resident.class);
+                            resident_intent.putExtra("flag_usecondition", flag_usecondition);
                             resident_intent.putExtra("account", et_account.getText().toString());
                             startActivity(resident_intent);
 
                         }else if(spinner_identity.getSelectedItem().toString().equals("管理員")){
+                            flag_usecondition = 2;
                             Intent intent = new Intent(MainActivity.this, managerActivity.class);
+                            intent.putExtra("flag_usecondition", flag_usecondition);
                             startActivity(intent);
                         }
                         flag++;
@@ -109,6 +113,11 @@ public class MainActivity extends AppCompatActivity {
                 //////跳到註冊畫面
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
     private Runnable mutiThread = new Runnable() {

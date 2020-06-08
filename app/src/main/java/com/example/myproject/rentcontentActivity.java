@@ -84,7 +84,11 @@ public class rentcontentActivity extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(rentcontentActivity.this, resident.class);
+        startActivity(intent);
+    }
 
     private void showDialog() {
         try {

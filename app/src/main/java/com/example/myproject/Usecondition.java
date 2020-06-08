@@ -21,6 +21,7 @@ public class Usecondition extends AppCompatActivity {
     private Button btn_usedate ;
     private int useYear, useMonth, useDay;
     private String result;
+    private int flag_usecondition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,7 @@ public class Usecondition extends AppCompatActivity {
 
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
+        flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
 
         btn_usedate = (Button) findViewById(R.id.btn_usedate);
         btn_usedate.setOnClickListener(new View.OnClickListener() {
@@ -54,5 +56,21 @@ public class Usecondition extends AppCompatActivity {
             }
 
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(flag_usecondition == 1){
+            Intent intent = new Intent(Usecondition.this, resident.class);
+            intent.putExtra("flag_usecondition", flag_usecondition);
+            startActivity(intent);
+        }
+        else if(flag_usecondition == 2){
+            Intent intent = new Intent(Usecondition.this, managerActivity.class);
+            intent.putExtra("flag_usecondition", flag_usecondition);
+            startActivity(intent);
+        }
+
+
     }
 }

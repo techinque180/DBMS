@@ -198,6 +198,11 @@ public class Rental extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Rental.this, resident.class);
+        startActivity(intent);
+    }
     /*從MySQL裡獲取資料*/
     private void receive() {
         new Thread(

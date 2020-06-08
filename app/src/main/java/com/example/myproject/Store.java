@@ -53,7 +53,12 @@ public class Store extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Store.this, managerActivity.class);
+        startActivity(intent);
 
+    }
     //傳送
     private void showDialog() {
         String room_no=et_storeroom.getText().toString();

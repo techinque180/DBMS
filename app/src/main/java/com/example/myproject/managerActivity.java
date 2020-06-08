@@ -13,6 +13,7 @@ public class managerActivity extends AppCompatActivity {
     private Button bnt_manusecondition;
     private Button bnt_manstore;
     private String account;
+    private int flag_usecondition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,7 @@ public class managerActivity extends AppCompatActivity {
         bnt_mansearchdamage = (Button) findViewById(R.id.bnt_mansearchdamage);
         bnt_manusecondition = (Button) findViewById(R.id.bnt_manusecondition);
         bnt_manstore = (Button) findViewById(R.id.bnt_manstore);
+        flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
 
         bnt_mansearchdamage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,5 +51,11 @@ public class managerActivity extends AppCompatActivity {
                 startActivity(intent);//跳到儲值畫面
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(managerActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

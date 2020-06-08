@@ -27,6 +27,7 @@ public class resident extends AppCompatActivity {
     private Button bnt_resdamagelevel;
     private String account;
     private String result;
+    private int flag_usecondition;
     private BalanceData balanceData = new BalanceData();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class resident extends AppCompatActivity {
 
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
+        flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
 
         bnt_record = (Button) findViewById(R.id.bnt_record);
         bnt_rent = (Button) findViewById(R.id.bnt_rent);
@@ -50,6 +52,7 @@ public class resident extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(resident.this, rentcontentActivity.class);
                 intent.putExtra("account", account);
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);//跳到租借紀錄畫面
 
             }
@@ -60,6 +63,7 @@ public class resident extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(resident.this, Rental.class);
                 intent.putExtra("account", account);
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);//跳到租借畫面
             }
         });
@@ -84,6 +88,7 @@ public class resident extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(resident.this, Usecondition.class);
                 intent.putExtra("account", account);
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);//跳到使用狀況畫面
             }
         });
@@ -93,9 +98,15 @@ public class resident extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(resident.this, Declare.class);
                 intent.putExtra("account", account );
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);//跳到申報畫面
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(resident.this, MainActivity.class);
+        startActivity(intent);
     }
 
     private Runnable mutiThread = new Runnable() {
