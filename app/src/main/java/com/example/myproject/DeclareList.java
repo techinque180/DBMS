@@ -28,6 +28,7 @@ public class DeclareList extends AppCompatActivity {
     private String reason;
     private String damage_level;
     private TextView level;
+    private int flag_usecondition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,15 @@ public class DeclareList extends AppCompatActivity {
         setContentView(R.layout.activity_declare_list);
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
+        flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
 
+
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(DeclareList.this, managerActivity.class);
+        intent.putExtra("flag_usecondition", flag_usecondition);
+        startActivity(intent);
 
     }
     private Runnable mutiThread = new Runnable() {

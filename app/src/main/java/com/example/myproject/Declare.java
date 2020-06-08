@@ -46,6 +46,7 @@ public class Declare extends AppCompatActivity {
 //    private String why;
 
     private  String account;
+    private int flag_usecondition;
 
 
     public static final String TAG="Declare";
@@ -56,7 +57,7 @@ public class Declare extends AppCompatActivity {
         setContentView(R.layout.activity_declare);
         Intent intent = getIntent();
         account = intent.getStringExtra("account");//new
-
+        flag_usecondition = intent.getIntExtra("flag_usecondition",flag_usecondition);
         et_reason = (EditText)findViewById(R.id.et_reason) ;
 
 
@@ -102,7 +103,13 @@ public class Declare extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Declare.this, resident.class);
+        intent.putExtra("flag_usecondition", flag_usecondition);
+        startActivity(intent);
 
+    }
     JSONObject jsonObject=new JSONObject();
 
 
