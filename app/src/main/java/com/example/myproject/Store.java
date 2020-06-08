@@ -51,6 +51,7 @@ public class Store extends AppCompatActivity {
                 showDialog();
                 showDialogMoney();
                 Intent intent = new Intent(Store.this, managerActivity.class);
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);
             }
         });

@@ -82,6 +82,7 @@ public class rentcontentActivity extends AppCompatActivity {
                 showDialog();
                 Intent intent = new Intent(rentcontentActivity.this, resident.class);
                 intent.putExtra("account", account);
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);
             }
         });

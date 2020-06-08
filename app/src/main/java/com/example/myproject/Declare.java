@@ -94,6 +94,7 @@ public class Declare extends AppCompatActivity {
                 ///////Login要改成登入後畫面///////
                 Intent intent = new Intent(Declare.this, resident.class);
                 Toast.makeText(Declare.this, "已送出", Toast.LENGTH_LONG).show();
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);
 
             }

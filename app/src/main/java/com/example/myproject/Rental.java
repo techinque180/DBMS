@@ -190,6 +190,7 @@ public class Rental extends AppCompatActivity {
                 System.out.println("rental_go");
                 Intent intent = new Intent(Rental.this, resident.class);
                 intent.putExtra("account", account);
+                intent.putExtra("flag_usecondition", flag_usecondition);
                 Toast.makeText(Rental.this, "租借成功", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
