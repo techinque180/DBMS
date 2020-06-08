@@ -63,6 +63,7 @@ public class Usecondition extends AppCompatActivity {
         if(flag_usecondition == 1){
             Intent intent = new Intent(Usecondition.this, resident.class);
             intent.putExtra("flag_usecondition", flag_usecondition);
+            intent.putExtra("account", account);
             startActivity(intent);
         }
         else if(flag_usecondition == 2){

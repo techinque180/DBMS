@@ -204,6 +204,7 @@ public class Rental extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(Rental.this, resident.class);
         intent.putExtra("flag_usecondition", flag_usecondition);
+        intent.putExtra("account", account);
         startActivity(intent);
     }
     /*從MySQL裡獲取資料*/

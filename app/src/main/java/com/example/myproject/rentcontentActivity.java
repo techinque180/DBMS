@@ -91,6 +91,7 @@ public class rentcontentActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(rentcontentActivity.this, resident.class);
         intent.putExtra("flag_usecondition", flag_usecondition);
+        intent.putExtra("account", account);
         startActivity(intent);
     }
 
