@@ -43,7 +43,7 @@ public class DeclareList extends AppCompatActivity {
         public void run() {
             try {
 //                10.22.15.106
-                URL url = new URL("http://http://10.22.23.6/utities_connect/declareGetData.php");
+                URL url = new URL("http://10.22.23.6/utities_connect/declareGetData.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -51,6 +51,7 @@ public class DeclareList extends AppCompatActivity {
                 connection.setDoInput(true);
                 connection.setUseCaches(false);
                 connection.connect();
+
 
                 int responseCode = connection.getResponseCode();
 

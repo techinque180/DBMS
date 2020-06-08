@@ -215,7 +215,7 @@ public class Rental extends AppCompatActivity {
         HttpURLConnection con=null;
         InputStream in=null;
 //        10.22.15.106
-        String      path="http://10.22.15.106/utities_connect/get_all_utilities.php";
+        String      path="http://10.22.23.6/utities_connect/get_all_utilities.php";
         try {
             con= (HttpURLConnection) new URL(path).openConnection();
             con.setConnectTimeout(5000);

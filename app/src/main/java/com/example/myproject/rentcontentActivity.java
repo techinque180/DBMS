@@ -156,7 +156,7 @@ public class rentcontentActivity extends AppCompatActivity {
         public void run() {
             try {
 //                10.22.15.106
-                URL url = new URL("http://10.22.15.106/utities_connect/utilitiesGetData.php");
+                URL url = new URL("http://10.22.23.6/utities_connect/utilitiesGetData.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
