@@ -148,7 +148,7 @@ public class Store extends AppCompatActivity {
     JSONObject jsonObjectMoney=new JSONObject();
     private void executeHttpPostMoney() {
 //        10.22.15.106
-        String path="http://10.22.15.106/account_connect/account_update.php";
+        String path="http://10.22.23.6/account_connect/account_update.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

@@ -185,6 +185,7 @@ public class Rental extends AppCompatActivity {
                 ////////判斷租借時間是否已經存在於資料庫///////if(不存在){}
                 //////將Login畫面改成登入後的畫面//////
                 showDialog();
+                showDialogMoney();
                 System.out.println("rental_go");
                 Intent intent = new Intent(Rental.this, resident.class);
                 intent.putExtra("account", account);
@@ -313,6 +314,68 @@ public class Rental extends AppCompatActivity {
             String Json=jsonObject.toString();
 
             System.out.println("-----------"+Json);
+
+            if (Json != null && !TextUtils.isEmpty(Json)) {
+                byte[] writebytes = Json.getBytes();
+                // 設定檔案長度
+                conn.setRequestProperty("Content-Length", String.valueOf(writebytes.length));
+                OutputStream outwritestream = conn.getOutputStream();
+                outwritestream.write(Json.getBytes());
+                outwritestream.flush();
+                outwritestream.close();
+                Log.d("upload: ", "doJsonPost: "+conn.getResponseCode());//如輸出200，則對了
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //傳送
+    private void showDialogMoney() {
+        try {
+            jsonObjectMoney.putOpt("room_no", account);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        };
+        sendMoney();
+    }
+
+    private void sendMoney() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                executeHttpPostMoney();
+            }
+        }).start();
+
+    }
+    JSONObject jsonObjectMoney=new JSONObject();
+    private void executeHttpPostMoney() {
+//        10.22.15.106
+        String path="http://10.22.23.6/account_connect/account_update_rental.php";
+        try {
+            URL url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            //conn.setConnectTimeout(3000);     //設定連線超時時間
+            conn.setDoOutput(true);  //開啟輸出流，以便向伺服器提交資料
+            conn.setDoInput(true);  //開啟輸入流，以便從伺服器獲取資料
+            conn.setUseCaches(false);//使用Post方式不能使用快取
+            conn.setRequestMethod("POST");  //設定以Post方式提交資料
+            //conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Charset", "UTF-8");
+            // 設定檔案型別:
+            //conn.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+            // 設定接收型別否則返回415錯誤
+            //conn.setRequestProperty("accept","*/*")此處為暴力方法設定接受所有型別，以此來防範返回415;
+            conn.setRequestProperty("accept","application/json");
+
+            // 往伺服器裡面傳送資料
+            String Json=jsonObjectMoney.toString();
+
+            System.out.println("-----------    "+Json);
 
             if (Json != null && !TextUtils.isEmpty(Json)) {
                 byte[] writebytes = Json.getBytes();
