@@ -7,6 +7,7 @@
     android:layout_marginRight="30dp"
     android:layout_marginTop="30dp"
     android:layout_marginBottom="30dp"
+    android:gravity="center"
 
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
@@ -16,7 +17,7 @@
 
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:layout_width="71dp"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/content" />
@@ -25,12 +26,14 @@
             android:layout_height="60dp"
             android:text="請選擇日期"
             android:textSize="20dp"
+            android:gravity="center"
             android:id="@+id/btn_usedate">
 
         </Button>
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -39,7 +42,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="設施"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:textSize="20dp">
 
         </TextView>
@@ -47,7 +50,7 @@
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:text="時間"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:textSize="20dp">
 
         </TextView>
