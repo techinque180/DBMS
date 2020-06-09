@@ -35,6 +35,8 @@ public class Usecondition extends AppCompatActivity {
     private  TextView time1;
     private TextView kind2;
     private  TextView time2;
+    private TextView kind3;
+    private  TextView time3;
     private String kind;
     private String month;
     private String day;
@@ -53,6 +55,8 @@ public class Usecondition extends AppCompatActivity {
         time1 = (TextView)findViewById(R.id.time1);
         kind2 = (TextView)findViewById(R.id.kind2);
         time2 = (TextView)findViewById(R.id.time2);
+        kind3 = (TextView)findViewById(R.id.kind3);
+        time3 = (TextView)findViewById(R.id.time3);
 
         Intent intent = getIntent();
         account = intent.getStringExtra("account");
@@ -159,6 +163,11 @@ public class Usecondition extends AppCompatActivity {
                         else if(flag == 1){
                             kind2.setText(kind);
                             time2.setText(hourstart+":"+minstart+"~"+hourend+":"+minend);
+                            flag++;
+                        }
+                        else if(flag == 2){
+                            kind3.setText(kind);
+                            time3.setText(hourstart+":"+minstart+"~"+hourend+":"+minend);
                             flag = 0;
                         }
                     }else {
@@ -167,6 +176,8 @@ public class Usecondition extends AppCompatActivity {
                             time1.setText(" ");
                             kind2.setText(" ");
                             time2.setText(" ");
+                            kind3.setText(" ");
+                            time3.setText(" ");
                         }
                     }
                 }
