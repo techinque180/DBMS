@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:text="設施申報表"
         android:textSize="30dp"
-        android:gravity="top">
+        android:gravity="top"
+        >
 
     </TextView>
     <LinearLayout
@@ -22,25 +23,69 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="50dp"
-            android:id="@+id/tv11">
+            android:textSize="20dp"
+            android:text="房號"
+            android:gravity="center">
 
         </TextView>
         <TextView
             android:layout_width="80dp"
             android:layout_height="50dp"
-            android:id="@+id/tv12">
+            android:textSize="20dp"
+            android:text="設施"
+            android:gravity="center">
 
         </TextView>
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/tv13">
+            android:textSize="20dp"
+            android:text="程度"
+            android:gravity="center">
 
         </TextView>
         <TextView
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:id="@+id/tv14">
+            android:textSize="20dp"
+            android:text="原因"
+            android:gravity="center">
+
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="15dp">
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:id="@+id/tv11"
+            android:textSize="15dp">
+
+        </TextView>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:id="@+id/tv12"
+            android:textSize="15dp">
+
+        </TextView>
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/tv13"
+            android:textSize="15dp">
+
+        </TextView>
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:id="@+id/tv14"
+            android:textSize="15dp">
 
         </TextView>
     </LinearLayout>
@@ -52,25 +97,29 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="50dp"
-            android:id="@+id/tv21">
+            android:id="@+id/tv21"
+            android:textSize="15dp">
 
         </TextView>
         <TextView
             android:layout_width="80dp"
             android:layout_height="50dp"
-            android:id="@+id/tv22">
+            android:id="@+id/tv22"
+            android:textSize="15dp">
 
         </TextView>
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/tv23">
+            android:id="@+id/tv23"
+            android:textSize="15dp">
 
         </TextView>
         <TextView
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:id="@+id/tv24">
+            android:id="@+id/tv24"
+            android:textSize="15dp">
 
         </TextView>
     </LinearLayout>
@@ -82,25 +131,29 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="50dp"
-            android:id="@+id/tv31">
+            android:id="@+id/tv31"
+            android:textSize="15dp">
 
         </TextView>
         <TextView
             android:layout_width="80dp"
             android:layout_height="50dp"
-            android:id="@+id/tv32">
+            android:id="@+id/tv32"
+            android:textSize="15dp">
 
         </TextView>
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/tv33">
+            android:id="@+id/tv33"
+            android:textSize="15dp">
 
         </TextView>
         <TextView
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:id="@+id/tv34">
+            android:id="@+id/tv34"
+            android:textSize="15dp">
 
         </TextView>
     </LinearLayout>
