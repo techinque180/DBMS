@@ -2,6 +2,7 @@ package com.example.myproject;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +29,7 @@ public class resident extends AppCompatActivity {
     private Button bnt_resdamagelevel;
     private String account;
     private String result;
+    private Toolbar toolbar;
 
     private int flag_usecondition;
     private BalanceData balanceData = new BalanceData();
