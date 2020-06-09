@@ -136,8 +136,8 @@ public class Usecondition extends AppCompatActivity {
                 // 取得資料後想用不同的格式
                 // 例如 Json 等等，都是在這一段做處理
                 JSONArray array = new JSONArray(result);
+                int flag = 0;
                 for (int i = 0; i < array.length(); i++) {
-                    int flag = 0;
                     JSONObject jsonObject = array.getJSONObject(i);
 
 
@@ -159,16 +159,16 @@ public class Usecondition extends AppCompatActivity {
                         else if(flag == 1){
                             kind2.setText(kind);
                             time2.setText(hourstart+":"+minstart+"~"+hourend+":"+minend);
+                            flag = 0;
                         }
-                    }else{
-                        if(flag == 0) {
+                    }else {
+                        if (flag == 0) {
                             kind1.setText(" ");
                             time1.setText(" ");
                             kind2.setText(" ");
                             time2.setText(" ");
                         }
                     }
-                    flag = 0;
                 }
             } catch (Exception e) {
                 result = e.toString();
