@@ -67,7 +67,7 @@ public class DeclareList extends AppCompatActivity {
         tv32 = (TextView)findViewById(R.id.tv32);
         tv33 = (TextView)findViewById(R.id.tv33);
         tv34 = (TextView)findViewById(R.id.tv34);
-
+        setTitle("申報設施表");
         Thread thread = new Thread(mutiThread);
         thread.start();
 
