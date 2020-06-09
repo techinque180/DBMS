@@ -78,7 +78,7 @@ public class DeclareList extends AppCompatActivity {
         public void run() {
             try {
 //                10.22.15.106
-                URL url = new URL("http://10.22.23.6/declared_connect/declaredGetData.php");
+                URL url = new URL("http://10.22.3.26/declared_connect/declaredGetData.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");

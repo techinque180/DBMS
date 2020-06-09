@@ -96,7 +96,7 @@ public class Store extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 
-        String path="http://10.22.23.6/transaction_connect/create_transaction.php";
+        String path="http://10.22.3.26/transaction_connect/create_transaction.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -161,7 +161,7 @@ public class Store extends AppCompatActivity {
     JSONObject jsonObjectMoney=new JSONObject();
     private void executeHttpPostMoney() {
 //        10.22.15.106
-        String path="http://10.22.23.6/account_connect/account_update.php";
+        String path="http://10.22.3.26/account_connect/account_update.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -226,7 +226,7 @@ public class Store extends AppCompatActivity {
     JSONObject jsonObjectStored=new JSONObject();
     private void executeHttpPostStored() {
 //        10.22.15.106
-        String path="http://10.22.23.6/transaction_connect/transaction_update.php";
+        String path="http://10.22.3.26/transaction_connect/transaction_update.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

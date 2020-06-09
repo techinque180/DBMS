@@ -118,7 +118,7 @@ public class rentcontentActivity extends AppCompatActivity {
     JSONObject jsonObject=new JSONObject();
     private void executeHttpPost() {
 //        10.22.15.106
-        String path="http://10.22.23.6/utities_connect/utilities_delete.php";
+        String path="http://10.22.3.26/utities_connect/utilities_delete.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -165,7 +165,7 @@ public class rentcontentActivity extends AppCompatActivity {
         public void run() {
             try {
 //                10.22.15.106
-                URL url = new URL("http://10.22.23.6/utities_connect/utilitiesGetData.php");
+                URL url = new URL("http://10.22.3.26/utities_connect/utilitiesGetData.php");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");

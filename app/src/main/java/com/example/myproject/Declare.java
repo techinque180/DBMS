@@ -94,6 +94,7 @@ public class Declare extends AppCompatActivity {
                 ///////Login要改成登入後畫面///////
                 Intent intent = new Intent(Declare.this, resident.class);
                 Toast.makeText(Declare.this, "已送出", Toast.LENGTH_LONG).show();
+                intent.putExtra("account", account);
                 intent.putExtra("flag_usecondition", flag_usecondition);
                 startActivity(intent);
 
@@ -153,7 +154,7 @@ public class Declare extends AppCompatActivity {
 
     private void executeHttpPost() {
 
-        String path="http://10.22.23.6/declared_connect/create_declared.php";
+        String path="http://10.22.3.26/declared_connect/create_declared.php";
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
